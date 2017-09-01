@@ -10,6 +10,17 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\module1.cpp" />
+    <ClCompile Include="Source\module2.cpp" />
+    <ClCompile Include="Source\module3.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Source\module1.h" />
+    <ClInclude Include="Source\module2.h" />
+    <ClInclude Include="Source\module3.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3A905E09-C4FE-4979-9468-E7FC2582DE3A}</ProjectGuid>
     <RootNamespace>My00a</RootNamespace>
@@ -63,17 +74,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="module1.cpp" />
-    <ClCompile Include="module2.cpp" />
-    <ClCompile Include="module3.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="module1.h" />
-    <ClInclude Include="module2.h" />
-    <ClInclude Include="module3.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
