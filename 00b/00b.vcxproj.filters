@@ -18,7 +18,7 @@
     <ClCompile Include="Source\main.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="Source\sortStrings.cpp">
+    <ClCompile Include="Source\sort_strings.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
@@ -28,7 +28,7 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\sortStrings.h">
+    <ClInclude Include="Source\sort_strings.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
   </ItemGroup>
