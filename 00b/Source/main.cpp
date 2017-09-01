@@ -9,9 +9,9 @@ using namespace std;
 void main(int argc, char* argv[]) {
 	list<string> strings;
 	list<string>::iterator it = strings.begin();
-	
+
 	ifstream input;
-	input.open(argv[1], ifstream:: end);
+	input.open(argv[1], ifstream::beg);
 	ofstream output;
 	output.open(argv[2], ofstream::out);
 
@@ -21,12 +21,12 @@ void main(int argc, char* argv[]) {
 		strings.insert(it, newString);
 	}
 
-	SortStrings::sortStrings(strings);
+	strings = SortStrings::sortStrings(strings);
 
-	it = strings.begin();
-	while (it != strings.end()) {
-		output << *it << endl;
-		it++;
+	if (strings.size() > 0) {
+		for (it = strings.begin(); it != strings.end(); it++) {
+			output << *it << endl;
+		}
 	}
 
 	input.close();
