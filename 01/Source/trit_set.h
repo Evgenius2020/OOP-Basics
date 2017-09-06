@@ -1,0 +1,20 @@
+#include <unordered_map>
+
+namespace Trit_Set {
+	enum Trit { False, Unknown, True };
+	class Trit_Set {
+	public:
+		Trit_Set(int start_size); // Construcror.
+		~Trit_Set(); // Destrucror.
+		Trit operator[](int i); // Index operator.
+		Trit_Set operator&(Trit_Set set); // AND operator.
+		Trit_Set operator|(Trit_Set set); // OR operator.
+		Trit_Set operator~(); // NOT operator.
+		int capacity(); // Returns length of internal array.
+		size_t cardinality(Trit value); // Returns count of trits with 'value' state.
+		std::unordered_map<Trit, int, std::hash<int>> cardinality(); // Returns map with numbers of trits for each possible states.
+		size_t length(); // (Index of last trit with 'False' or 'True' state) + 1.
+		void shrink(); // Reduces length of trits array to 'start_size' or 'length()', if it's bigger than 'start_size.
+		void trim(size_t lastIndex); // Sets all trits since 'lastindex' index in 'Unknown' state.
+	};
+}
