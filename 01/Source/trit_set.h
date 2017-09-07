@@ -2,14 +2,14 @@
 
 namespace Trit_Set {
 	enum Trit { False, Unknown, True };
-	class Trit_Set {
+	class TritSet {
 	public:
-		Trit_Set(int start_size); // Construcror.
-		~Trit_Set(); // Destrucror.
-		Trit operator[](int i); // Index operator.
-		Trit_Set operator&(Trit_Set set); // AND operator.
-		Trit_Set operator|(Trit_Set set); // OR operator.
-		Trit_Set operator~(); // NOT operator.
+		TritSet(int start_size); // Construcror.
+		~TritSet(); // Destrucror.
+		Trit& operator[](int i); // Index operator.
+		TritSet operator&(TritSet set); // AND operator.
+		TritSet operator|(TritSet set); // OR operator.
+		TritSet operator~(); // NOT operator.
 		int capacity(); // Returns length of internal array.
 		size_t cardinality(Trit value); // Returns count of trits with 'value' state.
 		std::unordered_map<Trit, int, std::hash<int>> cardinality(); // Returns map with numbers of trits for each possible states.
