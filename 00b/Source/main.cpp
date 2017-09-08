@@ -8,7 +8,7 @@ using namespace std;
 
 void main(int argc, char* argv[]) {
 	list<string> strings;
-	list<string>::iterator it = strings.begin();
+	list<string>::iterator it = strings.begin;
 
 	if (argc != 3) {
 		return;

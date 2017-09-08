@@ -22,7 +22,8 @@
     <ClInclude Include="Source\trit_set.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="program.cpp" />
+    <ClCompile Include="Source\program.cpp" />
+    <ClCompile Include="Source\trit_set.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{043B0ED5-4B5F-42F6-8B8D-8CD603096D9A}</ProjectGuid>
