@@ -46,9 +46,16 @@ using namespace Trit_Set;
 
 TEST(g, g) {
 	TritSet set(10);
-	ASSERT_EQ(Trit::Unknown, set[0]);
+	ASSERT_EQ(set[0], Trit::Unknown);
 	set[0] = Trit::True;
-	ASSERT_EQ(Trit::True, set[0]);
+	ASSERT_EQ(set[0], Trit::True);
+	set[1] = Trit::False;
+	ASSERT_EQ(set[0], Trit::True);
+	ASSERT_EQ(set[1], Trit::False);
+	set[0] = Trit::Unknown;
+	ASSERT_EQ(set[0], Trit::Unknown);
+	ASSERT_EQ(set[1], Trit::False);
+
 }
 
 int main(int argc, char** argv) {

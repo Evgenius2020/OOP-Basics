@@ -29,10 +29,11 @@ namespace Trit_Set {
 		TritSet* trit_set;
 		int index;
 		void modify_trit_value(int* source_int, int trit_position, Trit new_value);
+		static Trit get_trit_value(int source_int, int trit_position);
 	public:
 		TritContainer(TritSet* trit_set, int index);
-		bool operator==(Trit trit);
-		bool operator==(TritContainer trit_container);
+		bool operator==(Trit trit) const;
+		//bool operator==(TritContainer trit_container);
 		Trit operator=(Trit trit);
 	};
 }
