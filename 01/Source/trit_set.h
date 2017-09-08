@@ -1,23 +1,14 @@
 #include <unordered_map>
+#include "trit.h"
 
 namespace Trit_Set {
-	enum Trit { Unknown = 0, False = 1, True = 2};
-
-	class TritContainer {
-	private:
-		int* part;
-		Trit value;
-	public:
-		TritContainer(int* part, char position);
-		bool operator==(Trit trit);
-		bool operator=(Trit trit);
-	};
-
 	class TritSet {
 	private:
 		int* data;
 		int start_size;
 		int curr_size;
+		friend class TritContainer;
+		static size_t calculate_int_index(int trit_index);
 	public:
 		 TritSet(int start_size); // Construcror.
 		 ~TritSet(); // Destrucror.
@@ -31,5 +22,17 @@ namespace Trit_Set {
 		//size_t length(); // (Index of last trit with 'False' or 'True' state) + 1.
 		//void shrink(); // Reduces length of trits array to 'start_size' or 'length()', if it's bigger than 'start_size.
 		//void trim(size_t lastIndex); // Sets all trits since 'lastindex' index in 'Unknown' state.
+	};
+
+	class TritContainer {
+	private:
+		TritSet* trit_set;
+		int index;
+		void modify_trit_value(int* source_int, int trit_position, Trit new_value);
+	public:
+		TritContainer(TritSet* trit_set, int index);
+		bool operator==(Trit trit);
+		bool operator==(TritContainer trit_container);
+		Trit operator=(Trit trit);
 	};
 }

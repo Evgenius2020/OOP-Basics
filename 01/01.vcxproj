@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\trit.h" />
     <ClInclude Include="Source\trit_set.h" />
   </ItemGroup>
   <ItemGroup>
