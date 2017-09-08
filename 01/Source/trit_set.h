@@ -1,12 +1,27 @@
 #include <unordered_map>
 
 namespace Trit_Set {
-	enum Trit { False = 0, Unknown = 1, True = 2};
-	class TritSet {
+	enum Trit { Unknown = 0, False = 1, True = 2};
+
+	class TritContainer {
+	private:
+		int* part;
+		Trit value;
 	public:
-		TritSet(int start_size); // Construcror.
-		~TritSet(); // Destrucror.
-		Trit& operator[](int i); // Index operator.
+		TritContainer(int* part, char position);
+		bool operator==(Trit trit);
+		bool operator=(Trit trit);
+	};
+
+	class TritSet {
+	private:
+		int* data;
+		int start_size;
+		int curr_size;
+	public:
+		 TritSet(int start_size); // Construcror.
+		 ~TritSet(); // Destrucror.
+		TritContainer operator[](int i); // Index operator.
 		//TritSet operator&(TritSet set); // AND operator.
 		//TritSet operator|(TritSet set); // OR operator.
 		//TritSet operator~(); // NOT operator.
