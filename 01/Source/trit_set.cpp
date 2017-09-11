@@ -1,9 +1,11 @@
 #include "trit_set.h"
 #include "trit.h"
 
+typedef unsigned int uint;
+
 namespace Trit_Set {
 	size_t TritSet::calculate_int_index(int trit_index) {
-		return trit_index * 2 / 8 / sizeof(int);
+		return trit_index * 2 / 8 / sizeof(uint);
 	}
 
 	TritSet::TritSet(int start_size) : start_size(start_size), curr_size(start_size) {
@@ -27,15 +29,16 @@ namespace Trit_Set {
 	}
 
 	void TritContainer::modify_trit_value(int* source_int, int trit_position, Trit new_value) {
-		int left_part = *source_int;
-		left_part >>= sizeof(int) * 8 - trit_position * 2;
+		unsigned int left_part = *source_int;
+		left_part >>= (sizeof(int) * 8 - trit_position) - 2;
+		left_part >>= 2; // Stupid, but 'left_part >> sizeof(int)' doing nothing
 		left_part <<= 2;
 		left_part |= (int)new_value; // 00, 01, 10
-		left_part <<= sizeof(int) * 8 - (trit_position * 2 + 2);
+		left_part <<= sizeof(int) * 8 - (trit_position + 2);
 		
-		int right_part = *source_int;
-		right_part <<= trit_position * 2;
-		right_part >>= trit_position * 2;
+		unsigned int right_part = *source_int;
+		right_part <<= trit_position * 2 + 2;
+		right_part >>= trit_position * 2 + 2;
 
 		*source_int = left_part | right_part;
 	}
