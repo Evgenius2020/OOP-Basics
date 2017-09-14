@@ -1,5 +1,6 @@
 #include "trit_set.h"
 #include "trit.h"
+#include "iostream"
 
 typedef unsigned int uint;
 
@@ -25,7 +26,7 @@ namespace Trit_Set {
 	}
 
 	int TritSet::capacity() {
-		return curr_size / sizeof(int);
+		return TritSet::calculate_int_index(this->curr_size) + 1;
 	}
 
 	void TritContainer::modify_trit_value(int* source_int, int trit_position, Trit new_value) {
@@ -59,22 +60,24 @@ namespace Trit_Set {
 	}
 
 	Trit TritContainer::operator=(Trit trit) {
-		if (this->index >= trit_set->curr_size) {
+		if (this->index > trit_set->curr_size) {
 			if (trit == Trit::Unknown) { // Need to alloc additional memory?
 				return Trit::Unknown;
 			}
-			size_t new_size = TritSet::calculate_int_index(this->index - 1);
-			int* new_data = new int[new_size];
-			// TODO: Simplier pls
-			for (int i = 0; i < this->trit_set->curr_size; i++) {
-				new_data[i] = trit_set->data[i];
+			size_t new_size = TritSet::calculate_int_index(this->index) + 1;
+			if (new_size > this->trit_set->capacity()) {
+				int* new_data = new int[new_size];
+				// TODO: Simplier pls
+				for (int i = 0; i < this->trit_set->curr_size; i++) {
+					new_data[i] = trit_set->data[i];
+				}
+				for (int i = this->trit_set->curr_size; i < new_size; i++) {
+					new_data[i] = 0;
+				}
+				delete this->trit_set->data;
+				this->trit_set->data = new_data;
 			}
-			for (int i = this->trit_set->curr_size; i < new_size; i++) {
-				new_data[i] = 0;
-			}
-			delete this->trit_set->data;
-			this->trit_set->data = new_data;
-			this->trit_set->curr_size = new_size;
+			this->trit_set->curr_size = this->index + 1;
 		}
 		int* source_int = &this->trit_set->data[TritSet::calculate_int_index(this->index)];
 		int trit_position = (this->index * 2) % (sizeof(int) * 8);

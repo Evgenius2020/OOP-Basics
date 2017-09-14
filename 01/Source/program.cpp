@@ -44,7 +44,7 @@ using namespace Trit_Set;
 //	ASSERT_EQ(setC[0], Trit::False);
 //}
 
-TEST(g, g) {
+TEST(TritSetTests, WriteRead) {
 	TritSet set(10);
 	ASSERT_EQ(set[0], Trit::Unknown);
 	set[0] = Trit::True;
@@ -55,7 +55,19 @@ TEST(g, g) {
 	set[0] = Trit::Unknown;
 	ASSERT_EQ(set[0], Trit::Unknown);
 	ASSERT_EQ(set[1], Trit::False);
+	set[2] = Trit::True;
+	ASSERT_EQ(set[0], Trit::Unknown);
+	ASSERT_EQ(set[1], Trit::False);
+	ASSERT_EQ(set[2], Trit::True);
+	ASSERT_EQ(set[3], Trit::Unknown);
+	ASSERT_EQ(set[4], Trit::Unknown);
+}
 
+TEST(TritSetTest, Extension) {
+	TritSet set(1);
+	ASSERT_EQ(set.capacity(), 1);
+	set[32] = Trit::True;
+	ASSERT_NE(set.capacity(), 1);
 }
 
 int main(int argc, char** argv) {
