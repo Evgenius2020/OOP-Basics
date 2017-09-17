@@ -22,6 +22,7 @@
     <ClInclude Include="Source\Date.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Date.cpp" />
     <ClCompile Include="Source\program.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

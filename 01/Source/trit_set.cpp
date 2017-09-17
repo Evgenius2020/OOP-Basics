@@ -4,8 +4,7 @@
 
 typedef unsigned int uint;
 
-namespace Trit_Set {
-	size_t TritSet::calculate_int_index(int trit_index) {
+namespace Trit_Set 	size_t TritSet::calculate_int_index(int trit_index) {
 		return trit_index * 2 / 8 / sizeof(uint);
 	}
 

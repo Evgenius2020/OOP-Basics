@@ -1,7 +1,8 @@
 #pragma once
+#include <string>
+typedef unsigned int uint;
 
 namespace DateTools {
-	typedef unsigned int uint;
 	enum Month {
 		Jan = 1, 
 		Feb = 2, 
@@ -18,22 +19,23 @@ namespace DateTools {
 	};
 
 	class Date {
-	private: 
-		void normalizeDate();
+	private:
+		uint fields[6];
 	public:
 		Date();
-		Date(const Date& pattern);
-		Date(uint year, Month month, uint day, uint minutes, uint seconds);
+		Date(const Date& date);
+		Date(uint year, Month month, uint day, uint hours, uint minutes, uint seconds);
 		Date(uint year, Month month, uint day);
+		Date(uint hours, uint minutes, uint seconds);
 
-		Date operator=(Date date);
+		void operator=(Date date);
 
-		uint getYears();
-		uint getMonths();
-		uint getDays();
-		uint getHours();
-		uint getMinutes();
-		uint getSeconds();
+		uint getYear() const;
+		uint getMonth() const;
+		uint getDay() const;
+		/*uint getHours() const;
+		uint getMinutes() const;
+		uint getSeconds() const;
 
 		Date& addYears(int years);
 		Date& addMonths(int months);
@@ -41,5 +43,7 @@ namespace DateTools {
 		Date& addHours(int hours);
 		Date& addMinutes(int minutes);
 		Date& addSeconds(int seconds);
+
+		std::string toString() const;*/
 	};
 }
