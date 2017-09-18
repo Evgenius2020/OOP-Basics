@@ -1,4 +1,5 @@
 #include "Date.h"
+#include <ctime> 
 
 using namespace DateTools;
 
@@ -15,8 +16,19 @@ void normalizeDate(FieldName fieldName = FieldName::Seconds);
 int normalizeNumber(int &source, uint minimum, uint maximun);
 int getMonthDays(enum Month month, uint year);
 
-// Temporary!
-Date::Date() : Date(0, 0, 0) {}
+Date::Date() {
+	time_t rawtime;
+	time(&rawtime);
+	struct tm ptm;
+	gmtime_s(&ptm, &rawtime);
+
+	this->fields[Year] = ptm.tm_year + 1900;
+	this->fields[FieldName::Month] = ptm.tm_mon + 1;
+	this->fields[Day] = ptm.tm_mday;
+	this->fields[Hours] = ptm.tm_hour;
+	this->fields[Minutes] = ptm.tm_min;
+	this->fields[Seconds] = ptm.tm_sec;
+}
 
 Date::Date(const Date& date) {
 	for (int i = 0; i < 5; i++) {
@@ -58,4 +70,16 @@ uint DateTools::Date::getMonth() const {
 
 uint DateTools::Date::getDay() const {
 	return this->fields[Day];
+}
+
+uint Date::getHours() const {
+	return this->fields[Hours];
+}
+
+uint DateTools::Date::getMinutes() const {
+	return this->fields[Minutes];
+}
+
+uint DateTools::Date::getSeconds() const {
+	return this->fields[Seconds];
 }

@@ -33,10 +33,11 @@ namespace DateTools {
 		uint getYear() const;
 		uint getMonth() const;
 		uint getDay() const;
-		/*uint getHours() const;
+		uint getHours() const;
 		uint getMinutes() const;
 		uint getSeconds() const;
 
+		/*
 		Date& addYears(int years);
 		Date& addMonths(int months);
 		Date& addDays(int days);
