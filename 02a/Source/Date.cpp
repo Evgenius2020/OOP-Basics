@@ -12,9 +12,9 @@ enum FieldName {
 	Seconds = 5
 };
 	
-static const uint limits[6][2] = { {1, 9999}, { 1, 12 }, {0, 0}, {0, 23}, {0,59}, {0, 59} };
+static const int limits[6][2] = { {1, 9999}, { 1, 12 }, {0, 0}, {0, 23}, {0,59}, {0, 59} };
 
-int normalizeNumber(int &source, uint minimum, uint maximun);
+int normalizeNumber(int &source, int minimum, int maximun);
 uint getMonthDays(Month month, uint year);
 
 void Date::normalizeDate() {
@@ -73,21 +73,20 @@ Date::Date(uint year, enum Month month, uint day, uint hours, uint minutes, uint
 	this->fields[Hours] = hours;
 	this->fields[Minutes] = minutes;
 	this->fields[Seconds] = seconds;
+
+	this->normalizeDate();
 }
 
 Date::Date(uint year, enum Month month, uint day) : 
-	Date::Date(year, month, day, 0, 0, 0) {}
+	Date::Date(year, month, day, 0, 0, 0) {
+	this->normalizeDate();
+}
 
 Date::Date(uint hours, uint minutes, uint seconds) : Date() {
 	this->fields[Hours] = hours;
 	this->fields[Minutes] = minutes;
 	this->fields[Seconds] = seconds;
-}
-
-void Date::operator=(Date const date) {
-	for (int i = 0; i < 5; i++) {
-		this->fields[i] = date.fields[i];
-	}
+	this->normalizeDate();
 }
 
 uint Date::getYear() const {
@@ -116,51 +115,51 @@ uint Date::getSeconds() const {
 
 Date& Date::addYears(int years) {
 	this->fields[Year] += years;
-	normalizeDate();
+	this->normalizeDate();
 	return Date(*this);
 }
 
 Date& Date::addMonths(int months) {
 	this->fields[Mon] += months;
-	normalizeDate();
+	this->normalizeDate();
 	return Date(*this);
 }
 
 Date& Date::addDays(int days) {
 	this->fields[Day] += days;
-	normalizeDate();
+	this->normalizeDate();
 	return Date(*this);
 }
 
 Date& Date::addHours(int hours) {
 	this->fields[Hours] += hours;
-	normalizeDate();
+	this->normalizeDate();
 	return Date(*this);
 }
 
 Date& Date::addMinutes(int minutes) {
 	this->fields[Minutes] += minutes;
-	normalizeDate();
+	this->normalizeDate();
 	return Date(*this);
 }
 
 Date& Date::addSeconds(int seconds) {
 	this->fields[Seconds] += seconds;
-	normalizeDate();
+	this->normalizeDate();
 	return Date(*this);
 }
 
-int normalizeNumber(int& source, uint minimum, uint maximum) {
+int normalizeNumber(int& source, int minimum, int maximum) {
 	int carry = 0;
 
 	if (source > maximum) {
 		carry = source / maximum;
-		source = source % maximum;
+		source = source % (maximum + 1) + minimum; 
 	}
 	else {
 		while (source < minimum) {
 			carry--;
-			source += (maximum - minimum);
+			source += maximum + 1 - minimum;
 		}
 	}
 

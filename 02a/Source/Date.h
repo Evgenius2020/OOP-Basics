@@ -29,8 +29,6 @@ namespace DateTools {
 		Date(uint year, Month month, uint day);
 		Date(uint hours, uint minutes, uint seconds);
 
-		void operator=(Date date);
-
 		uint getYear() const;
 		uint getMonth() const;
 		uint getDay() const;

@@ -60,9 +60,21 @@ TEST(AddTimeTests, AddSeconds) {
 	date = date.addSeconds(65);
 	ASSERT_EQ(10, date.getSeconds());
 	ASSERT_EQ(1, date.getMinutes());
-	date = date.addSeconds(24);
+	date = date.addSeconds(-12);
 	ASSERT_EQ(0, date.getMinutes());
-	ASSERT_EQ(46, date.getSeconds());
+	ASSERT_EQ(58, date.getSeconds());
+}
+
+TEST(AddTimeTests, AddMinutes) {
+	Date date = Date(0, 0, 0);
+	ASSERT_EQ(0, date.getMinutes());
+	ASSERT_EQ(0, date.getHours());
+	date.addMinutes(240);
+	ASSERT_EQ(0, date.getMinutes());
+	ASSERT_EQ(4, date.getHours());
+	date.addMinutes(-241);
+	ASSERT_EQ(23, date.getHours());
+	ASSERT_EQ(59, date.getMinutes());
 }
 
 int main(int argc, char** argv) {
