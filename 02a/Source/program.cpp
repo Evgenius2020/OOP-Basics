@@ -81,11 +81,11 @@ TEST(AddTimeTests, AddMinutes) {
 	ASSERT_EQ(0, date.getMinutes());
 	ASSERT_EQ(0, date.getHours());
 	ASSERT_EQ(0, date.getSeconds());
-	date.addMinutes(240);
+	date = date.addMinutes(240);
 	ASSERT_EQ(0, date.getMinutes());
 	ASSERT_EQ(4, date.getHours());
 	ASSERT_EQ(0, date.getSeconds());
-	date.addMinutes(-241);
+	date = date.addMinutes(-241);
 	ASSERT_EQ(23, date.getHours());
 	ASSERT_EQ(59, date.getMinutes());
 	ASSERT_EQ(0, date.getSeconds());
@@ -93,13 +93,13 @@ TEST(AddTimeTests, AddMinutes) {
 
 TEST(AddTimeTests, AddHours) {
 	Date date = Date(1, Month::Jan, 1);
-	date.addHours(5);
+	date = date.addHours(5);
 	ASSERT_EQ(1, date.getDay());
 	ASSERT_EQ(5, date.getHours());
 	date = date.addHours(20);
 	ASSERT_EQ(2, date.getDay());
 	ASSERT_EQ(1, date.getHours());
-	date.addHours(-24);
+	date = date.addHours(-24);
 	ASSERT_EQ(1, date.getDay());
 	ASSERT_EQ(1, date.getHours());
 }
@@ -144,6 +144,40 @@ TEST(AddTimeTests, AddYears) {
 	ASSERT_EQ(5, date.getYear());
 	date = date.addYears(-5);
 	ASSERT_EQ(9999, date.getYear());
+}
+
+TEST(AddTimeTests, UnmodifyingLogic) {
+	Date date = Date(1, Month::Jan, 1, 0, 0, 0);
+	ASSERT_EQ(1, date.getYear());
+	ASSERT_EQ(Month::Jan, date.getMonth());
+	ASSERT_EQ(1, date.getDay());
+	ASSERT_EQ(0, date.getHours());
+	ASSERT_EQ(0, date.getMinutes());
+	ASSERT_EQ(0, date.getSeconds());
+	date.addYears(1);
+	date.addDays(1);
+	date.addMonths(1);
+	date.addHours(1);
+	date.addMinutes(1);
+	date.addSeconds(1);
+	ASSERT_EQ(1, date.getYear());
+	ASSERT_EQ(Month::Jan, date.getMonth());
+	ASSERT_EQ(1, date.getDay());
+	ASSERT_EQ(0, date.getHours());
+	ASSERT_EQ(0, date.getMinutes());
+	ASSERT_EQ(0, date.getSeconds());
+	date = date.addYears(1);
+	date = date.addDays(1);
+	date = date.addMonths(1);
+	date = date.addHours(1);
+	date = date.addMinutes(1);
+	date = date.addSeconds(1);
+	ASSERT_EQ(2, date.getYear());
+	ASSERT_EQ(Month::Feb, date.getMonth());
+	ASSERT_EQ(2, date.getDay());
+	ASSERT_EQ(1, date.getHours());
+	ASSERT_EQ(1, date.getMinutes());
+	ASSERT_EQ(1, date.getSeconds());
 }
 
 int main(int argc, char** argv) {

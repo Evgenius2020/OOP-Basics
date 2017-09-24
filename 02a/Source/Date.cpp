@@ -111,40 +111,46 @@ uint Date::getSeconds() const {
 	return this->fields[Seconds];
 }
 
-Date& Date::addYears(int years) {
-	this->fields[Year] += years;
-	this->normalizeDate();
-	return Date(*this);
+const Date Date::addYears(int years) {
+	Date date = Date(*this);
+	date.fields[Year] += years;
+	date.normalizeDate();
+	return date;
 }
 
-Date& Date::addMonths(int months) {
-	this->fields[Mon] += months;
-	this->normalizeDate();
-	return Date(*this);
+const Date Date::addMonths(int months) {
+	Date date = Date(*this);
+	date.fields[Mon] += months;
+	date.normalizeDate();
+	return date;
 }
 
-Date& Date::addDays(int days) {
-	this->fields[Day] += days;
-	this->normalizeDate();
-	return Date(*this);
+const Date Date::addDays(int days) {
+	Date date = Date(*this);
+	date.fields[Day] += days;
+	date.normalizeDate();
+	return date;
 }
 
-Date& Date::addHours(int hours) {
-	this->fields[Hours] += hours;
-	this->normalizeDate();
-	return Date(*this);
+const Date Date::addHours(int hours) {
+	Date date = Date(*this);
+	date.fields[Hours] += hours;
+	date.normalizeDate();
+	return date;
 }
 
-Date& Date::addMinutes(int minutes) {
-	this->fields[Minutes] += minutes;
-	this->normalizeDate();
-	return Date(*this);
+const Date Date::addMinutes(int minutes) {
+	Date date = Date(*this);
+	date.fields[Minutes] += minutes;
+	date.normalizeDate();
+	return date;
 }
 
-Date& Date::addSeconds(int seconds) {
-	this->fields[Seconds] += seconds;
-	this->normalizeDate();
-	return Date(*this);
+const Date Date::addSeconds(int seconds) {
+	Date date = Date(*this);
+	date.fields[Seconds] += seconds;
+	date.normalizeDate();
+	return date;
 }
 
 uint getMonthDays(Month month, uint year) {

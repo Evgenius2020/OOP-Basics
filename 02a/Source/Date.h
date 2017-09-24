@@ -36,12 +36,12 @@ namespace DateTools {
 		uint getMinutes() const;
 		uint getSeconds() const;
 		
-		Date& addYears(int years);
-		Date& addMonths(int months);
-		Date& addDays(int days);
-		Date& addHours(int hours);
-		Date& addMinutes(int minutes);
-		Date& addSeconds(int seconds);
+		const Date addYears(int years);
+		const Date addMonths(int months);
+		const Date addDays(int days);
+		const Date addHours(int hours);
+		const Date addMinutes(int minutes);
+		const Date addSeconds(int seconds);
 
 		// std::string toString() const;
 	};
