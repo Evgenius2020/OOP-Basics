@@ -50,6 +50,21 @@ TEST(ConstructorsTests, CurrentTimeConstructors) {
 	ASSERT_EQ(ptm.tm_sec, date.getSeconds());
 }
 
+TEST(AddTimeTests, AddSeconds) {
+	Date date = Date(0, 0, 0);
+	ASSERT_EQ(0, date.getSeconds());
+	ASSERT_EQ(0, date.getMinutes());
+	date = date.addSeconds(5);
+	ASSERT_EQ(5, date.getSeconds());
+	ASSERT_EQ(0, date.getMinutes());
+	date = date.addSeconds(65);
+	ASSERT_EQ(10, date.getSeconds());
+	ASSERT_EQ(1, date.getMinutes());
+	date = date.addSeconds(24);
+	ASSERT_EQ(0, date.getMinutes());
+	ASSERT_EQ(46, date.getSeconds());
+}
+
 int main(int argc, char** argv) {
 	::testing::InitGoogleTest(&argc, argv);
 	return RUN_ALL_TESTS();

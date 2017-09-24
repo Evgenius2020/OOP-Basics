@@ -20,7 +20,8 @@ namespace DateTools {
 
 	class Date {
 	private:
-		uint fields[6];
+		void normalizeDate();
+		int fields[6];
 	public:
 		Date();
 		Date(const Date& date);
@@ -36,8 +37,7 @@ namespace DateTools {
 		uint getHours() const;
 		uint getMinutes() const;
 		uint getSeconds() const;
-
-		/*
+		
 		Date& addYears(int years);
 		Date& addMonths(int months);
 		Date& addDays(int days);
@@ -45,6 +45,6 @@ namespace DateTools {
 		Date& addMinutes(int minutes);
 		Date& addSeconds(int seconds);
 
-		std::string toString() const;*/
+		// std::string toString() const;
 	};
 }
