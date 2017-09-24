@@ -30,7 +30,7 @@ namespace DateTools {
 		Date(uint hours, uint minutes, uint seconds);
 
 		uint getYear() const;
-		uint getMonth() const;
+		Month getMonth() const;
 		uint getDay() const;
 		uint getHours() const;
 		uint getMinutes() const;

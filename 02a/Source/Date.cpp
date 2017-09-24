@@ -31,7 +31,7 @@ void Date::normalizeDate() {
 			maximum = getMonthDays((Month)fields[Mon], fields[Year]);
 		}
 		fields[currField] += carry;
-		carry = normalizeNumber(fields[currField], minimum, maximum);
+		carry = normalizeNumber(fields[currField], minimum, maximum); // +365-days-case brakes this code.
 		if (carry) {
 			if (currField != Year) {
 				currField = (FieldName)((int)currField - 1);
@@ -93,8 +93,8 @@ uint Date::getYear() const {
 	return this->fields[Year];
 }
 
-uint Date::getMonth() const {
-	return this->fields[Mon];
+Month Date::getMonth() const {
+	return (Month)this->fields[Mon];
 }
 
 uint Date::getDay() const {
@@ -168,7 +168,7 @@ int normalizeNumber(int& source, int minimum, int maximum) {
 
 uint getMonthDays(Month month, uint year) {
 	if (month == Feb) {
-		if (year % 400 == 0) {
+		if ((year % 4) || (year % 400 == 0)){
 			return 28;
 		}
 		if ((year % 4 == 0) || (year % 100 == 0)) {

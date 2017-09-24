@@ -69,12 +69,50 @@ TEST(AddTimeTests, AddMinutes) {
 	Date date = Date(0, 0, 0);
 	ASSERT_EQ(0, date.getMinutes());
 	ASSERT_EQ(0, date.getHours());
+	ASSERT_EQ(0, date.getSeconds());
 	date.addMinutes(240);
 	ASSERT_EQ(0, date.getMinutes());
 	ASSERT_EQ(4, date.getHours());
+	ASSERT_EQ(0, date.getSeconds());
 	date.addMinutes(-241);
 	ASSERT_EQ(23, date.getHours());
 	ASSERT_EQ(59, date.getMinutes());
+	ASSERT_EQ(0, date.getSeconds());
+}
+
+TEST(AddTimeTests, AddHours) {
+	Date date = Date(1, Month::Jan, 1);
+	date.addHours(5);
+	ASSERT_EQ(1, date.getDay());
+	ASSERT_EQ(5, date.getHours());
+	date = date.addHours(20);
+	ASSERT_EQ(2, date.getDay());
+	ASSERT_EQ(1, date.getHours());
+	date.addHours(-24);
+	ASSERT_EQ(1, date.getDay());
+	ASSERT_EQ(1, date.getHours());
+}
+
+TEST(AddTimetests, AddDays) {
+	Date date = Date(1, Month::Feb, 1);
+	date = date.addDays(30);
+	ASSERT_EQ(Month::Mar, date.getMonth());
+	ASSERT_EQ(3, date.getDay());
+	date = Date(4, Month::Feb, 1);
+	date = date.addDays(30);
+	ASSERT_EQ(2, date.getDay());
+	ASSERT_EQ(Month::Mar, date.getMonth());
+
+	date = Date(1, Month::Jan, 1);
+	date = date.addDays(365);
+	ASSERT_EQ(2, date.getYear());
+	ASSERT_EQ(Month::Jan, date.getMonth());
+	ASSERT_EQ(1, date.getDay());
+	date = Date(4, Month::Jan, 1);
+	date = date.addDays(366);
+	ASSERT_EQ(2, date.getYear());
+	ASSERT_EQ(Month::Jan, date.getMonth());
+	ASSERT_EQ(1, date.getDay());
 }
 
 int main(int argc, char** argv) {
