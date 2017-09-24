@@ -50,6 +50,17 @@ TEST(ConstructorsTests, CurrentTimeConstructors) {
 	ASSERT_EQ(ptm.tm_sec, date.getSeconds());
 }
 
+TEST(ConstructorsTests, WrongInitializing) {
+	Date date = Date(2010, Month::Feb, 30, 22, 59, 72);
+	ASSERT_EQ(2010, date.getYear());
+	ASSERT_EQ(Month::Mar, date.getMonth());
+	ASSERT_EQ(2, date.getDay());
+	ASSERT_EQ(23, date.getHours());
+	ASSERT_EQ(0, date.getMinutes());
+	ASSERT_EQ(12, date.getSeconds());
+}
+
+
 TEST(AddTimeTests, AddSeconds) {
 	Date date = Date(0, 0, 0);
 	ASSERT_EQ(0, date.getSeconds());
@@ -93,7 +104,7 @@ TEST(AddTimeTests, AddHours) {
 	ASSERT_EQ(1, date.getHours());
 }
 
-TEST(AddTimetests, AddDays) {
+TEST(AddTimeTests, AddDays) {
 	Date date = Date(1, Month::Feb, 1);
 	date = date.addDays(30);
 	ASSERT_EQ(Month::Mar, date.getMonth());
@@ -110,9 +121,29 @@ TEST(AddTimetests, AddDays) {
 	ASSERT_EQ(1, date.getDay());
 	date = Date(4, Month::Jan, 1);
 	date = date.addDays(366);
-	ASSERT_EQ(2, date.getYear());
+	ASSERT_EQ(5, date.getYear());
 	ASSERT_EQ(Month::Jan, date.getMonth());
 	ASSERT_EQ(1, date.getDay());
+}
+
+TEST(AddTimeTests, AddMonths) {
+	Date date = Date(1, Month::Jan, 1);
+	date = date.addMonths(25);
+	ASSERT_EQ(3, date.getYear());
+	ASSERT_EQ(Month::Feb, date.getMonth());
+	ASSERT_EQ(1, date.getDay());
+	date = date.addMonths(-26);
+	ASSERT_EQ(9999, date.getYear());
+	ASSERT_EQ(Month::Dec, date.getMonth());
+	ASSERT_EQ(1, date.getDay());
+}
+
+TEST(AddTimeTests, AddYears) {
+	Date date = Date(5, Month::Jan, 1);
+	date = date.addYears(9999);
+	ASSERT_EQ(5, date.getYear());
+	date = date.addYears(-5);
+	ASSERT_EQ(9999, date.getYear());
 }
 
 int main(int argc, char** argv) {

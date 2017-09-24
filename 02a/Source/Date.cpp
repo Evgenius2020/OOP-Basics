@@ -11,37 +11,35 @@ enum FieldName {
 	Minutes = 4,
 	Seconds = 5
 };
-	
-static const int limits[6][2] = { {1, 9999}, { 1, 12 }, {0, 0}, {0, 23}, {0,59}, {0, 59} };
 
-int normalizeNumber(int &source, int minimum, int maximun);
+static const int limits[6][2] = { {1, 9999}, { 1, 12 }, {1, 0}, {0, 23}, {0,59}, {0, 59} };
+
 uint getMonthDays(Month month, uint year);
 
 void Date::normalizeDate() {
 	FieldName currField = Year;
-	int carry = 0;
-	uint minimum, maximum;
-	while(1) {
-		if (currField != Day) {
-			minimum = limits[currField][0];
-			maximum = limits[currField][1];
+
+	while (1) {
+		int carry = 0;
+		int minimum = limits[currField][0];
+		int maximum = (currField != Day) ? limits[currField][1] : getMonthDays((Month)fields[Mon], fields[Year]);
+		if (fields[currField] < minimum) {
+			carry = -1;
+			fields[currField] += maximum + 1 - minimum;
 		}
-		else {
-			minimum = 1;
-			maximum = getMonthDays((Month)fields[Mon], fields[Year]);
+		else if (fields[currField] > maximum) {
+			carry = 1;
+			fields[currField] -= maximum + 1 - minimum;
 		}
-		fields[currField] += carry;
-		carry = normalizeNumber(fields[currField], minimum, maximum); // +365-days-case brakes this code.
-		if (carry) {
-			if (currField != Year) {
-				currField = (FieldName)((int)currField - 1);
-			}
+		if ((carry) && (currField != Year)) {
+			currField = FieldName(currField - 1);
+			fields[currField] += carry;
 		}
 		else {
 			if (currField == Seconds) {
 				return;
 			}
-			currField = (FieldName)((int)currField + 1);
+			currField = FieldName(currField + 1);
 		}
 	}
 }
@@ -77,7 +75,7 @@ Date::Date(uint year, enum Month month, uint day, uint hours, uint minutes, uint
 	this->normalizeDate();
 }
 
-Date::Date(uint year, enum Month month, uint day) : 
+Date::Date(uint year, enum Month month, uint day) :
 	Date::Date(year, month, day, 0, 0, 0) {
 	this->normalizeDate();
 }
@@ -149,26 +147,9 @@ Date& Date::addSeconds(int seconds) {
 	return Date(*this);
 }
 
-int normalizeNumber(int& source, int minimum, int maximum) {
-	int carry = 0;
-
-	if (source > maximum) {
-		carry = source / maximum;
-		source = source % (maximum + 1) + minimum; 
-	}
-	else {
-		while (source < minimum) {
-			carry--;
-			source += maximum + 1 - minimum;
-		}
-	}
-
-	return carry;
-}
-
 uint getMonthDays(Month month, uint year) {
 	if (month == Feb) {
-		if ((year % 4) || (year % 400 == 0)){
+		if ((year % 4) || (year % 400 == 0)) {
 			return 28;
 		}
 		if ((year % 4 == 0) || (year % 100 == 0)) {
