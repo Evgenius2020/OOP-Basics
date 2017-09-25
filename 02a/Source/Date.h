@@ -43,6 +43,6 @@ namespace DateTools {
 		const Date addMinutes(int minutes);
 		const Date addSeconds(int seconds);
 
-		// std::string toString() const;
+		std::string toString() const;
 	};
 }

@@ -1,5 +1,6 @@
-#include "Date.h"
 #include <ctime> 
+#include <sstream>
+#include "Date.h"
 
 using namespace DateTools;
 
@@ -13,6 +14,7 @@ enum FieldName {
 };
 
 static const int limits[6][2] = { {1, 9999}, { 1, 12 }, {1, 0}, {0, 23}, {0,59}, {0, 59} };
+static const std::string monthNames[12] = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
 
 uint getMonthDays(Month month, uint year);
 
@@ -151,6 +153,24 @@ const Date Date::addSeconds(int seconds) {
 	date.fields[Seconds] += seconds;
 	date.normalizeDate();
 	return date;
+}
+
+std::string DateTools::Date::toString() const { 
+	std::stringstream oss;
+
+	oss << getYear();
+	oss << '-';
+	oss << monthNames[getMonth() - 1];
+	oss << '-';
+	oss << getDay();
+	oss << ' ';
+	oss << getHours();
+	oss << "::";
+	oss << getMinutes();
+	oss << "::";
+	oss << getSeconds();
+
+	return oss.str(); // YYYY-MMM- DD hh::mm::ss
 }
 
 uint getMonthDays(Month month, uint year) {
