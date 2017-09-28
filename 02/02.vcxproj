@@ -20,9 +20,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Date.h" />
+    <ClInclude Include="Source\DateHolder.h" />
+    <ClInclude Include="Source\FieldName.h" />
+    <ClInclude Include="Source\Month.h" />
+    <ClInclude Include="Source\uint.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Date.cpp" />
+    <ClCompile Include="Source\DateHolder.cpp" />
     <ClCompile Include="Source\program.cpp" />
     <ClCompile Include="Tests\AddTimeTests.cpp" />
     <ClCompile Include="Tests\ConstructorsTests.cpp" />

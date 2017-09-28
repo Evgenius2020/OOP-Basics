@@ -1,17 +1,9 @@
 #include <ctime> 
 #include <sstream>
 #include "Date.h"
+#include "FieldName.h"
 
 using namespace DateTools;
-
-enum FieldName {
-	Year = 0,
-	Mon = 1,
-	Day = 2,
-	Hours = 3,
-	Minutes = 4,
-	Seconds = 5
-};
 
 static const int limits[6][2] = { {1, 9999}, { 1, 12 }, {1, 0}, {0, 23}, {0,59}, {0, 59} };
 static const std::string monthNames[12] = { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
@@ -87,30 +79,6 @@ Date::Date(uint hours, uint minutes, uint seconds) : Date() {
 	this->fields[Minutes] = minutes;
 	this->fields[Seconds] = seconds;
 	this->normalizeDate();
-}
-
-uint Date::getYear() const {
-	return this->fields[Year];
-}
-
-Month Date::getMonth() const {
-	return (Month)this->fields[Mon];
-}
-
-uint Date::getDay() const {
-	return this->fields[Day];
-}
-
-uint Date::getHours() const {
-	return this->fields[Hours];
-}
-
-uint Date::getMinutes() const {
-	return this->fields[Minutes];
-}
-
-uint Date::getSeconds() const {
-	return this->fields[Seconds];
 }
 
 const Date Date::addYears(int years) {
