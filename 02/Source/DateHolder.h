@@ -8,11 +8,11 @@ namespace DateTools {
 	protected:
 		int fields[6];
 	public:
-		uint getYear() const;
-		Month getMonth() const;
-		uint getDay() const;
-		uint getHours() const;
-		uint getMinutes() const;
-		uint getSeconds() const;
+		uint getYear();
+		Month getMonth();
+		uint getDay();
+		uint getHours();
+		uint getMinutes();
+		uint getSeconds();
 	};
 }

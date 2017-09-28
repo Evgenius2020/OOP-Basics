@@ -81,49 +81,49 @@ Date::Date(uint hours, uint minutes, uint seconds) : Date() {
 	this->normalizeDate();
 }
 
-const Date Date::addYears(int years) {
+Date Date::addYears(int years) const {
 	Date date = Date(*this);
 	date.fields[Year] += years;
 	date.normalizeDate();
 	return date;
 }
 
-const Date Date::addMonths(int months) {
+Date Date::addMonths(int months) const {
 	Date date = Date(*this);
 	date.fields[Mon] += months;
 	date.normalizeDate();
 	return date;
 }
 
-const Date Date::addDays(int days) {
+Date Date::addDays(int days) const {
 	Date date = Date(*this);
 	date.fields[Day] += days;
 	date.normalizeDate();
 	return date;
 }
 
-const Date Date::addHours(int hours) {
+Date Date::addHours(int hours) const {
 	Date date = Date(*this);
 	date.fields[Hours] += hours;
 	date.normalizeDate();
 	return date;
 }
 
-const Date Date::addMinutes(int minutes) {
+Date Date::addMinutes(int minutes) const {
 	Date date = Date(*this);
 	date.fields[Minutes] += minutes;
 	date.normalizeDate();
 	return date;
 }
 
-const Date Date::addSeconds(int seconds) {
+Date Date::addSeconds(int seconds) const {
 	Date date = Date(*this);
 	date.fields[Seconds] += seconds;
 	date.normalizeDate();
 	return date;
 }
 
-std::string DateTools::Date::toString() const { 
+std::string Date::toString() { 
 	std::stringstream oss;
 
 	oss << getYear();

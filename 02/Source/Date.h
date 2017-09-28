@@ -16,13 +16,13 @@ namespace DateTools {
 		Date(uint year, Month month, uint day);
 		Date(uint hours, uint minutes, uint seconds);
 		
-		const Date addYears(int years);
-		const Date addMonths(int months);
-		const Date addDays(int days);
-		const Date addHours(int hours);
-		const Date addMinutes(int minutes);
-		const Date addSeconds(int seconds);
+		Date addYears(int years) const;
+		Date addMonths(int months) const;
+		Date addDays(int days) const;
+		Date addHours(int hours) const;
+		Date addMinutes(int minutes) const;
+		Date addSeconds(int seconds) const;
 
-		std::string toString() const;
+		std::string toString();
 	};
 }

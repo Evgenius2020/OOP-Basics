@@ -5,26 +5,26 @@
 
 using namespace DateTools;
 
-uint DateHolder::getYear() const {
+uint DateHolder::getYear() {
 	return fields[Year];
 }
 
-Month DateHolder::getMonth() const {
+Month DateHolder::getMonth() {
 	return (Month)fields[Mon];
 }
 
-uint DateHolder::getDay() const {
+uint DateHolder::getDay() {
 	return fields[Day];
 }
 
-uint DateHolder::getHours() const {
+uint DateHolder::getHours() {
 	return fields[Hours];
 }
 
-uint DateHolder::getMinutes() const {
+uint DateHolder::getMinutes() {
 	return fields[Minutes];
 }
 
-uint DateHolder::getSeconds() const {
+uint DateHolder::getSeconds() {
 	return fields[Seconds];
 }
