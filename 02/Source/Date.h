@@ -3,11 +3,11 @@
 #include <string>
 #include "uint.h"
 #include "Month.h"
-#include "DateHolder.h"
 
 namespace DateTools {
-	class Date : public DateHolder {
+	class Date {
 	private:
+		int fields[6];
 		void normalizeDate();
 	public:
 		Date();
@@ -22,6 +22,13 @@ namespace DateTools {
 		Date addHours(int hours) const;
 		Date addMinutes(int minutes) const;
 		Date addSeconds(int seconds) const;
+
+		uint getYear();
+		Month getMonth();
+		uint getDay();
+		uint getHours();
+		uint getMinutes();
+		uint getSeconds();
 
 		std::string toString();
 	};

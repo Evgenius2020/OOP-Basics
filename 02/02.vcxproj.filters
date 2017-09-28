@@ -24,13 +24,13 @@
     <ClInclude Include="Source\Month.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\DateHolder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\uint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\FieldName.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DateInterval.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -50,7 +50,7 @@
     <ClCompile Include="Tests\ToStringTests.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
-    <ClCompile Include="Source\DateHolder.cpp">
+    <ClCompile Include="Source\DateInterval.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

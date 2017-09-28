@@ -123,6 +123,30 @@ Date Date::addSeconds(int seconds) const {
 	return date;
 }
 
+uint Date::getYear() {
+	return fields[Year];
+}
+
+Month Date::getMonth() {
+	return (Month)fields[Mon];
+}
+
+uint Date::getDay() {
+	return fields[Day];
+}
+
+uint Date::getHours() {
+	return fields[Hours];
+}
+
+uint Date::getMinutes() {
+	return fields[Minutes];
+}
+
+uint Date::getSeconds() {
+	return fields[Seconds];
+}
+
 std::string Date::toString() { 
 	std::stringstream oss;
 
