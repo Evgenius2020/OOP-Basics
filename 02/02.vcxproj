@@ -28,6 +28,7 @@
   <ItemGroup>
     <ClCompile Include="Source\Date.cpp" />
     <ClCompile Include="Source\DateInterval.cpp" />
+    <ClCompile Include="Source\OpetatorTests.cpp" />
     <ClCompile Include="Source\program.cpp" />
     <ClCompile Include="Tests\AddTimeTests.cpp" />
     <ClCompile Include="Tests\ConstructorsTests.cpp" />
