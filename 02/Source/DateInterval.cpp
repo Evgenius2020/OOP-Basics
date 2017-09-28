@@ -20,26 +20,26 @@ DateInterval::DateInterval(const DateInterval & dateInterval) {
 	}
 }
 
-int DateInterval::getYears() {
+int DateInterval::getYears() const {
 	return fields[Year];
 }
 
-int DateInterval::getMonths() {
+int DateInterval::getMonths() const {
 	return fields[Mon];
 }
 
-int DateInterval::getDays() {
+int DateInterval::getDays() const {
 	return fields[Day];
 }
 
-int DateInterval::getHours() {
+int DateInterval::getHours() const {
 	return fields[Hours];
 }
 
-int DateInterval::getMinutes() {
+int DateInterval::getMinutes() const {
 	return fields[Minutes];
 }
 
-int DateInterval::getSeconds() {
+int DateInterval::getSeconds() const {
 	return fields[Seconds];
 }

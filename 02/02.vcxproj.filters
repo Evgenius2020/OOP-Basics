@@ -56,5 +56,8 @@
     <ClCompile Include="Source\OpetatorTests.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
+    <ClCompile Include="Source\AddIntervalTests.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

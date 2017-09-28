@@ -12,11 +12,11 @@ namespace DateTools {
 		DateInterval(int years, int months, int days, int hours, int minutes, int seconds);
 		DateInterval(const DateInterval& dateInterval);
 
-		int getYears();
-		int getMonths();
-		int getDays();
-		int getHours();
-		int getMinutes();
-		int getSeconds();
+		int getYears() const;
+		int getMonths() const;
+		int getDays() const;
+		int getHours() const;
+		int getMinutes() const;
+		int getSeconds() const;
 	};
 }

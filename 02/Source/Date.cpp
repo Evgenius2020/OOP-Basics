@@ -147,7 +147,20 @@ uint Date::getSeconds() {
 	return fields[Seconds];
 }
 
-std::string Date::toString() { 
+Date Date::addInterval(const DateInterval& interval) const {
+	Date date(*this);
+	date.fields[Year] += interval.getYears();
+	date.fields[Mon] += interval.getMonths();
+	date.fields[Day] += interval.getDays();
+	date.fields[Hours] += interval.getHours();
+	date.fields[Minutes] += interval.getMinutes();
+	date.fields[Seconds] += interval.getSeconds();
+	date.normalizeDate();
+
+	return date;
+}
+
+std::string Date::toString() {
 	std::stringstream oss;
 
 	oss << getYear();

@@ -3,6 +3,7 @@
 #include <string>
 #include "uint.h"
 #include "Month.h"
+#include "DateInterval.h"
 
 namespace DateTools {
 	class Date {
@@ -29,6 +30,9 @@ namespace DateTools {
 		uint getHours();
 		uint getMinutes();
 		uint getSeconds();
+
+		DateInterval getInterval(const Date& another) const;
+		Date addInterval(const DateInterval& interval) const;
 
 		std::string toString();
 	};

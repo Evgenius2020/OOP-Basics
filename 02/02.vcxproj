@@ -26,6 +26,7 @@
     <ClInclude Include="Source\uint.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\AddIntervalTests.cpp" />
     <ClCompile Include="Source\Date.cpp" />
     <ClCompile Include="Source\DateInterval.cpp" />
     <ClCompile Include="Source\OpetatorTests.cpp" />
