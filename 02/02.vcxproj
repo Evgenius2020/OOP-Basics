@@ -26,14 +26,14 @@
     <ClInclude Include="Source\uint.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\AddIntervalTests.cpp" />
     <ClCompile Include="Source\Date.cpp" />
     <ClCompile Include="Source\DateInterval.cpp" />
-    <ClCompile Include="Source\GetIntervalTests.cpp" />
-    <ClCompile Include="Source\OpetatorTests.cpp" />
     <ClCompile Include="Source\program.cpp" />
+    <ClCompile Include="Tests\AddIntervalTests.cpp" />
     <ClCompile Include="Tests\AddTimeTests.cpp" />
     <ClCompile Include="Tests\ConstructorsTests.cpp" />
+    <ClCompile Include="Tests\GetIntervalTests.cpp" />
+    <ClCompile Include="Tests\OpetatorTests.cpp" />
     <ClCompile Include="Tests\ToStringTests.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -93,7 +93,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Source;$(SolutionDir)googletest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

@@ -1,5 +1,5 @@
 #include "gtest.h"
-#include "../Source/Date.h"
+#include "Date.h"
 
 using namespace DateTools;
 

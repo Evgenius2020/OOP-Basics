@@ -41,25 +41,25 @@
     <ClCompile Include="Source\Date.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\DateInterval.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\AddIntervalTests.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
     <ClCompile Include="Tests\AddTimeTests.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
     <ClCompile Include="Tests\ConstructorsTests.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
+    <ClCompile Include="Tests\GetIntervalTests.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\OpetatorTests.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
     <ClCompile Include="Tests\ToStringTests.cpp">
-      <Filter>Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\DateInterval.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\OpetatorTests.cpp">
-      <Filter>Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\AddIntervalTests.cpp">
-      <Filter>Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GetIntervalTests.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
   </ItemGroup>
