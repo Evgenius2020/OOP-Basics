@@ -19,15 +19,20 @@ void Date::normalizeDate() {
 		int maximum = (currField != Day) ? limits[currField][1] : getMonthDays((Month)fields[Mon], fields[Year]);
 		if (fields[currField] < minimum) {
 			carry = -1;
-			fields[currField] += maximum + 1 - minimum;
 		}
 		else if (fields[currField] > maximum) {
 			carry = 1;
-			fields[currField] -= maximum + 1 - minimum;
 		}
-		if ((carry) && (currField != Year)) {
-			currField = FieldName(currField - 1);
-			fields[currField] += carry;
+
+		if (carry) {
+			if ((currField == Day) && (carry == -1)) {
+				maximum = getMonthDays((Month)(fields[Mon] - 1), fields[Year]);
+			}
+			fields[currField] -= carry * (maximum + 1 - minimum);
+			if (currField != Year) {
+				currField = FieldName(currField - 1);
+				fields[currField] += carry;
+			}
 		}
 		else {
 			if (currField == Seconds) {
