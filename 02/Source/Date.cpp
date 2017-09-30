@@ -128,36 +128,39 @@ Date Date::addSeconds(int seconds) const {
 	return date;
 }
 
-uint Date::getYear() const{
+uint Date::getYear() const {
 	return fields[Year];
 }
 
-Month Date::getMonth() {
+Month Date::getMonth() const {
 	return (Month)fields[Mon];
 }
 
-uint Date::getDay() {
+uint Date::getDay() const {
 	return fields[Day];
 }
 
-uint Date::getHours() {
+uint Date::getHours() const {
 	return fields[Hours];
 }
 
-uint Date::getMinutes() {
+uint Date::getMinutes() const {
 	return fields[Minutes];
 }
 
-uint Date::getSeconds() {
+uint Date::getSeconds() const {
 	return fields[Seconds];
 }
 
 DateInterval DateTools::Date::getInterval(const Date & another) const {
 	int years = another.getYear() - getYear();
-	//int months, days, hours, minutes, seconds;
+	int months = (int)another.getMonth() - (int)getMonth();
+	int days = another.getDay() - getDay();
+	int hours = another.getHours() - getHours();
+	int minutes = another.getMinutes() - getMinutes();
+	int seconds = another.getSeconds() - getSeconds();
 
-	//return DateInterval(years, months, days, hours, minutes, seconds);
-	return DateInterval(years, 0, 0, 0, 0, 0);
+	return DateInterval(years, months, days, hours, minutes, seconds);
 }
 
 Date Date::addInterval(const DateInterval& interval) const {

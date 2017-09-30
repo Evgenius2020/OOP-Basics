@@ -25,11 +25,11 @@ namespace DateTools {
 		Date addSeconds(int seconds) const;
 
 		uint getYear() const;
-		Month getMonth();
-		uint getDay();
-		uint getHours();
-		uint getMinutes();
-		uint getSeconds();
+		Month getMonth() const;
+		uint getDay() const;
+		uint getHours() const;
+		uint getMinutes() const;
+		uint getSeconds() const;
 
 		DateInterval getInterval(const Date& another) const;
 		Date addInterval(const DateInterval& interval) const;
