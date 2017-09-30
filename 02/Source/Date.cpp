@@ -128,7 +128,7 @@ Date Date::addSeconds(int seconds) const {
 	return date;
 }
 
-uint Date::getYear() {
+uint Date::getYear() const{
 	return fields[Year];
 }
 
@@ -150,6 +150,14 @@ uint Date::getMinutes() {
 
 uint Date::getSeconds() {
 	return fields[Seconds];
+}
+
+DateInterval DateTools::Date::getInterval(const Date & another) const {
+	int years = another.getYear() - getYear();
+	//int months, days, hours, minutes, seconds;
+
+	//return DateInterval(years, months, days, hours, minutes, seconds);
+	return DateInterval(years, 0, 0, 0, 0, 0);
 }
 
 Date Date::addInterval(const DateInterval& interval) const {

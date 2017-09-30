@@ -29,6 +29,7 @@
     <ClCompile Include="Source\AddIntervalTests.cpp" />
     <ClCompile Include="Source\Date.cpp" />
     <ClCompile Include="Source\DateInterval.cpp" />
+    <ClCompile Include="Source\GetIntervalTests.cpp" />
     <ClCompile Include="Source\OpetatorTests.cpp" />
     <ClCompile Include="Source\program.cpp" />
     <ClCompile Include="Tests\AddTimeTests.cpp" />

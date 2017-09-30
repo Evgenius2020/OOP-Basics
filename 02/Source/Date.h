@@ -24,7 +24,7 @@ namespace DateTools {
 		Date addMinutes(int minutes) const;
 		Date addSeconds(int seconds) const;
 
-		uint getYear();
+		uint getYear() const;
 		Month getMonth();
 		uint getDay();
 		uint getHours();

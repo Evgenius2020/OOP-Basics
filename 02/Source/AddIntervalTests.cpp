@@ -34,4 +34,12 @@ TEST(AddIntervalTests, WithNormalization) {
 	ASSERT_EQ(23, date.getHours());
 	ASSERT_EQ(59, date.getMinutes());
 	ASSERT_EQ(59, date.getSeconds());
+
+	date = date.addInterval(DateInterval(0, 0, 32, 0, 0, 0));
+	ASSERT_EQ(1, date.getYear());
+	ASSERT_EQ(Apr, date.getMonth());
+	ASSERT_EQ(1, date.getDay());
+	ASSERT_EQ(23, date.getHours());
+	ASSERT_EQ(59, date.getMinutes());
+	ASSERT_EQ(59, date.getSeconds());
 }
