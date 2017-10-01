@@ -176,22 +176,43 @@ Date Date::addInterval(const DateInterval& interval) const {
 	return date;
 }
 
-std::string Date::toString() {
+std::string intToString(int val, size_t size) {
 	std::stringstream oss;
+	oss << "0000";
+	oss << val;
+	std::string result = oss.str();
+	result = result.substr(result.size() - size, size);
+	return result;
+}
 
-	oss << getYear();
-	oss << '-';
-	oss << monthNames[getMonth() - 1];
-	oss << '-';
-	oss << getDay();
-	oss << ' ';
-	oss << getHours();
-	oss << "::";
-	oss << getMinutes();
-	oss << "::";
-	oss << getSeconds();
+std::string replaceAll(const std::string str, const std::string oldStr, const std::string newStr) {
+	std::string result = str;
+	int pos;
+	size_t len = newStr.length();
 
-	return oss.str(); // YYYY-MMM- DD hh::mm::ss
+	while (0 <= (pos = result.find(oldStr))) {
+		result.replace(pos, len, newStr);
+	}
+
+	return result;
+}
+
+std::string Date::toString(const std::string format) {
+	std::string result = format;
+
+	result = replaceAll(result, "YYYY", intToString(getYear(), 4));
+	result = replaceAll(result, "MMM", monthNames[getMonth() - 1]);
+	result = replaceAll(result, "MM", intToString(getMonth(), 2));
+	result = replaceAll(result, "DD", intToString(getDay(), 2));
+	result = replaceAll(result, "hh", intToString(getHours(), 2));
+	result = replaceAll(result, "mm", intToString(getMinutes(), 2));
+	result = replaceAll(result, "ss", intToString(getSeconds(), 2));
+
+	return result;
+}
+
+std::string Date::toString() {
+	return toString("YYYY-MMM-DD hh::mm::ss");
 }
 
 uint getMonthDays(Month month, uint year) {

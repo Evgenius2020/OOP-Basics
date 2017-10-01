@@ -34,6 +34,7 @@ namespace DateTools {
 		DateInterval getInterval(const Date& another) const;
 		Date addInterval(const DateInterval& interval) const;
 
+		std::string toString(const std::string format);
 		std::string toString();
 	};
 }
