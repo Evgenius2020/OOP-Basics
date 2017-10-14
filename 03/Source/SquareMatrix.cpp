@@ -1,10 +1,18 @@
 #include "SquareMatrix.h"
 
 namespace GameOfLifeModel {
+	template<typename T>
+	SquareMatrix<T>::SquareMatrix() : SquareMatrix(0) { }
+
 	template <typename T>
 	SquareMatrix<T>::SquareMatrix(unsigned int size) {
 		_size = size;
-		_data = new int[size*size];
+		_data = new T[size*size];
+	}
+
+	template<typename T>
+	unsigned int SquareMatrix<T>::getSize() {
+		return _size;
 	}
 
 	template<typename T>

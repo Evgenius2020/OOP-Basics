@@ -20,12 +20,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\CellState.h" />
+    <ClInclude Include="Source\CommandsExecutor.h" />
     <ClInclude Include="Source\GameModel.h" />
     <ClInclude Include="Source\GameUI.h" />
-    <ClInclude Include="Source\Serializator.h" />
+    <ClInclude Include="Source\SquareMatrix.h" />
+    <ClInclude Include="Source\MatrixSerializator.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\GameModel.cpp" />
+    <ClCompile Include="Source\GameUI.cpp" />
+    <ClCompile Include="Source\MatrixSerializator.cpp" />
     <ClCompile Include="Source\program.cpp" />
+    <ClCompile Include="Source\SquareMatrix.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{AA81E2A3-378B-4621-A1F8-EFF36FEE0DDE}</ProjectGuid>

@@ -2,23 +2,23 @@
 #include <string>
 #include <map>
 #include "CellState.h"
-#include"Matrix.h"
+#include "SquareMatrix.h"
 
 namespace GameOfLifeModel {
 	class GameModel {
 	private:
-		Matrix _field;
-		int _stepNumber;
-		int _isEnd;
+		SquareMatrix<CellState> _field;
+		unsigned int _stepNumber;
+		bool _isEnd;
 	public:
-		GameModel(int fieldSize);
+		GameModel(unsigned int fieldSize);
 
-		int getStepNumber();
-		int getFieldSize();
+		unsigned int getStepNumber();
+		unsigned int getFieldSize();
 		bool getIsEnd();
 
 		void reset();
-		void set(int x, int y, CellState state);
+		void set(int x, int y, CellState cellState);
 		void step(unsigned int n);
 		void back();
 		const std::string fieldToStr();
