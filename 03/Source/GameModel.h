@@ -1,14 +1,14 @@
 #pragma once
-#include "CellState.h"
 #include <string>
 #include <map>
+#include "CellState.h"
+#include"Matrix.h"
 
 namespace GameOfLifeModel {
 	class GameModel {
 	private:
-		CellState** _field;
+		Matrix _field;
 		int _stepNumber;
-		int _fieldSize;
 		int _isEnd;
 	public:
 		GameModel(int fieldSize);
@@ -16,7 +16,7 @@ namespace GameOfLifeModel {
 		int getStepNumber();
 		int getFieldSize();
 		bool getIsEnd();
-		
+
 		void reset();
 		void set(int x, int y, CellState state);
 		void step(unsigned int n);
