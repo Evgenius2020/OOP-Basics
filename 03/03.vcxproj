@@ -20,9 +20,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\CellState.h" />
-    <ClInclude Include="Source\Field.h" />
     <ClInclude Include="Source\GameModel.h" />
     <ClInclude Include="Source\GameUI.h" />
+    <ClInclude Include="Source\Serializator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\program.cpp" />

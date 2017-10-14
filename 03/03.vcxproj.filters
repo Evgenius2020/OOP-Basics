@@ -21,10 +21,10 @@
     <ClInclude Include="Source\CellState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Field.h">
+    <ClInclude Include="Source\GameModel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GameModel.h">
+    <ClInclude Include="Source\Serializator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

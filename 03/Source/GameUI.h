@@ -5,12 +5,10 @@
 namespace GameOfLife {
 	class GameUI {
 	private:
-		GameModel gameModel;
+		GameModel _gameModel;
 	public:
-		void Init();
-		bool isEnd();
-		GameModel getGameModel();
-		std::string toStr();
+		GameUI(int fieldSize);
+		void Run();
 		std::string executeStr(std::string str);
 	};
 }
