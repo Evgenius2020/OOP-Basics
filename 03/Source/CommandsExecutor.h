@@ -6,8 +6,8 @@
 namespace GameOfLifeController {
 	static class CommandsExecutor {
 	public:
-		static bool checkValid(std::string cmd);
-		static const std::string execute(std::string cmd, GameOfLifeModel::GameModel gameModel);
+		static bool CheckValid(std::string cmd);
+		static const std::string Execute(std::string cmd, GameOfLifeModel::GameModel gameModel);
 	};
 }
 

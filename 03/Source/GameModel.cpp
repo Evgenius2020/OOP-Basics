@@ -23,6 +23,7 @@ namespace GameOfLifeModel {
 	}
 
 	void GameModel::reset() {
+		_isEnd = false;
 		for (int y = 0; y < getFieldSize(); ++y) {
 			for (int x = 0; x < getFieldSize(); ++x) {
 				_field.setXY(x, y, CellState::Dead);
@@ -36,9 +37,15 @@ namespace GameOfLifeModel {
 
 	void GameModel::step(unsigned int n) {
 		int size = _field.getSize();
+		bool isEnd = _isEnd;
 
 		for (int i = n; i > 0; --i) {
+			if (_isEnd) {
+				isEnd = true;
+			}
+			isEnd = true;
 			SquareMatrix<CellState> buf = _field;
+
 			for (int y = 0; y < size; ++y) {
 				for (int x = 0; x < size; ++x) {
 					int aliveNeighbours = 0;
@@ -56,16 +63,18 @@ namespace GameOfLifeModel {
 					CellState oldState = buf.getXY(x, y);
 					CellState newState;
 					if (oldState == CellState::Alive) {
-						if (aliveNeighbours == 3) {
-							newState = Alive;
+						if (aliveNeighbours != 3) {
+							newState = Dead;
+							isEnd = false;
 						}
 						else {
-							newState = Dead;
+							newState = Alive;
 						}
 					}
 					else {
 						if ((aliveNeighbours >= 2) && (aliveNeighbours <= 3)) {
 							newState = Alive;
+							isEnd = false;
 						}
 						else {
 							newState = Dead;
@@ -84,5 +93,6 @@ namespace GameOfLifeModel {
 
 	void GameModel::setFieldFromStr(const std::string str) {
 		_field = MatrixSerializator::Deserialize(str);
+		_isEnd = false;
 	}
 }
