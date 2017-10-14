@@ -2,13 +2,12 @@
 #include <string>
 #include "GameModel.h"
 
-namespace GameOfLife {
+namespace GameOfLifeView {
 	class GameUI {
 	private:
-		GameModel _gameModel;
+		GameOfLifeModel::GameModel _gameModel;
 	public:
 		GameUI(int fieldSize);
 		void Run();
-		std::string executeStr(std::string str);
 	};
 }

@@ -3,7 +3,7 @@
 #include <string>
 #include <map>
 
-namespace GameOfLife {
+namespace GameOfLifeModel {
 	class GameModel {
 	private:
 		CellState** _field;

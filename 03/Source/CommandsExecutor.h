@@ -3,11 +3,11 @@
 #include <map>
 #include "GameModel.h"
 
-namespace GameOfLife {
+namespace GameOfLifeController {
 	static class CommandsExecutor {
 	public:
 		static bool checkValid(std::string cmd);
-		static const std::string execute(std::string cmd, GameModel gameModel);
+		static const std::string execute(std::string cmd, GameOfLifeModel::GameModel gameModel);
 	};
 }
 
