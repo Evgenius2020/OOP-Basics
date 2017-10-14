@@ -11,6 +11,7 @@ namespace GameOfLifeModel {
 		unsigned int _stepNumber;
 		bool _isEnd;
 	public:
+		GameModel();
 		GameModel(unsigned int fieldSize);
 
 		unsigned int getStepNumber();

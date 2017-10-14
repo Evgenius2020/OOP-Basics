@@ -1,27 +1,29 @@
 #include "SquareMatrix.h"
+#include "CellState.h"
 
 namespace GameOfLifeModel {
-	template<typename T>
-	SquareMatrix<T>::SquareMatrix() : SquareMatrix(0) { }
-
-	template <typename T>
-	SquareMatrix<T>::SquareMatrix(unsigned int size) {
-		_size = size;
-		_data = new T[size*size];
+	SquareMatrix<CellState>::SquareMatrix() {
+		_size = 0;
+		_data = nullptr;
 	}
 
-	template<typename T>
-	unsigned int SquareMatrix<T>::getSize() {
+	SquareMatrix<CellState>::SquareMatrix(unsigned int size) {
+		_size = size;
+		_data = new CellState[size*size];
+		for (int i = 0; i < size*size; ++i) {
+			_data[i] = (CellState)0;
+		}
+	}
+
+	unsigned int SquareMatrix<CellState>::getSize() {
 		return _size;
 	}
 
-	template<typename T>
-	T SquareMatrix<T>::getXY(unsigned int x, unsigned int y) {
+	CellState SquareMatrix<CellState>::getXY(unsigned int x, unsigned int y) {
 		return _data[y * _size + x];
 	}
 
-	template<typename T>
-	void SquareMatrix<T>::setXY(unsigned int x, unsigned int y, T val) {
+	void SquareMatrix<CellState>::setXY(unsigned int x, unsigned int y, CellState val) {
 		_data[y * _size + x] = val;
 	}
 }

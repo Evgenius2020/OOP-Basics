@@ -7,7 +7,7 @@ namespace GameOfLifeView {
 	private:
 		GameOfLifeModel::GameModel _gameModel;
 	public:
-		GameUI(int fieldSize);
+		GameUI(unsigned int fieldSize);
 		void Run();
 	};
 }

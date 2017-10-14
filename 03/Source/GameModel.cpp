@@ -1,10 +1,13 @@
+#include <string>
 #include "CellState.h"
-#include "GameModel.h"
 #include "SquareMatrix.h"
+#include "GameModel.h"
 #include "MatrixSerializator.h"
 
 namespace GameOfLifeModel {
-	GameOfLifeModel::GameModel::GameModel(unsigned int fieldSize) {
+	GameModel::GameModel(): GameModel(0) { }
+
+	GameModel::GameModel(unsigned int fieldSize) {
 		_field = SquareMatrix<CellState>(fieldSize);
 		_isEnd = false;
 		_stepNumber = 0;
@@ -24,8 +27,8 @@ namespace GameOfLifeModel {
 
 	void GameModel::reset() {
 		_isEnd = false;
-		for (int y = 0; y < getFieldSize(); ++y) {
-			for (int x = 0; x < getFieldSize(); ++x) {
+		for (unsigned int y = 0; y < getFieldSize(); ++y) {
+			for (unsigned int x = 0; x < getFieldSize(); ++x) {
 				_field.setXY(x, y, CellState::Dead);
 			}
 		}

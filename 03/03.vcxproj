@@ -27,6 +27,7 @@
     <ClInclude Include="Source\MatrixSerializator.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\CommandsExecutor.cpp" />
     <ClCompile Include="Source\GameModel.cpp" />
     <ClCompile Include="Source\GameUI.cpp" />
     <ClCompile Include="Source\MatrixSerializator.cpp" />

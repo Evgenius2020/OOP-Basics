@@ -4,11 +4,8 @@
 #include "GameModel.h"
 
 namespace GameOfLifeController {
-	static class CommandsExecutor {
+	class CommandsExecutor {
 	public:
-		static bool CheckValid(std::string cmd);
 		static const std::string Execute(std::string cmd, GameOfLifeModel::GameModel gameModel);
 	};
 }
-
-static const std::map<std::string, int> ConsoleInterface = { { "reset", 0 },{ "set", 2 },{ "clear", 2 },{ "back", 0 } ,{ "save", 1 },{ "load", 1 } };

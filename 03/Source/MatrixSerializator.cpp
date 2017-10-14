@@ -2,6 +2,9 @@
 #include <sstream>
 #include <list>
 #include <math.h>
+#include <iterator>
+#include "CellState.h"
+#include "SquareMatrix.h"
 #include "MatrixSerializator.h"
 
 namespace GameOfLifeModel {
@@ -32,7 +35,7 @@ namespace GameOfLifeModel {
 			}
 		}
 
-		int size = (int)sqrt(values.size);
+		int size = (int)sqrt(values.size());
 		SquareMatrix<CellState> result(size);
 		std::list<CellState>::iterator it = values.begin();
 
