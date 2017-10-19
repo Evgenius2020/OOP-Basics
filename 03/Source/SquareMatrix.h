@@ -1,18 +1,21 @@
 #pragma once
+#include "CellState.h"
 
 namespace GameOfLifeModel {
-	template <typename T>
 	class SquareMatrix {
 	private:
-		T* _data;
+		CellState* _data;
 		unsigned int _size;
 	public:
-		SquareMatrix<T>();
-		SquareMatrix<T>(unsigned int size);
+		SquareMatrix();
+		SquareMatrix(unsigned int size);
+		SquareMatrix(const SquareMatrix& another);
 
 		unsigned int getSize();
 
-		T getXY(unsigned int x, unsigned int y);
-		void setXY(unsigned int x, unsigned int y, T val);
+		SquareMatrix& operator=(const SquareMatrix& another);
+
+		CellState getXY(unsigned int x, unsigned int y);
+		void setXY(unsigned int x, unsigned int y, CellState val);
 	};
 }

@@ -5,10 +5,10 @@
 #include "MatrixSerializator.h"
 
 namespace GameOfLifeModel {
-	GameModel::GameModel(): GameModel(0) { }
+	GameModel::GameModel() : GameModel(0) {}
 
 	GameModel::GameModel(unsigned int fieldSize) {
-		_field = SquareMatrix<CellState>(fieldSize);
+		_field = SquareMatrix(fieldSize);
 		_isEnd = false;
 		_stepNumber = 0;
 	}
@@ -35,61 +35,57 @@ namespace GameOfLifeModel {
 	}
 
 	void GameModel::set(int x, int y, CellState cellState) {
+		_isEnd = false;
 		_field.setXY(x, y, cellState);
 	}
 
 	void GameModel::step(unsigned int n) {
 		int size = _field.getSize();
-		bool isEnd = _isEnd;
 
 		for (int i = n; i > 0; --i) {
 			if (_isEnd) {
-				isEnd = true;
+				return;
 			}
-			isEnd = true;
-			SquareMatrix<CellState> buf = _field;
+			_isEnd = true;
+			SquareMatrix buf(_field);
 
 			for (int y = 0; y < size; ++y) {
 				for (int x = 0; x < size; ++x) {
 					int aliveNeighbours = 0;
-					aliveNeighbours += _field.getXY((x - 1) % size, (y - 1) % size);
-					aliveNeighbours += _field.getXY(x % size, (y - 1) % size);
-					aliveNeighbours += _field.getXY((x + 1) % size, (y - 1) % size);
+					aliveNeighbours += (int)_field.getXY((x - 1 + size) % size, (y - 1 + size) % size);
+					aliveNeighbours += (int)_field.getXY(x % size, (y - 1 + size) % size);
+					aliveNeighbours += (int)_field.getXY((x + 1) % size, (y - 1 + size) % size);
 
-					aliveNeighbours += _field.getXY((x - 1) % size, y % size);
-					aliveNeighbours += _field.getXY((x + 1) % size, y % size);
+					aliveNeighbours += (int)_field.getXY((x - 1 + size) % size, y % size);
+					aliveNeighbours += (int)_field.getXY((x + 1) % size, y % size);
 
-					aliveNeighbours += _field.getXY((x - 1) % size, (y + 1) % size);
-					aliveNeighbours += _field.getXY(x % size, (y + 1) % size);
-					aliveNeighbours += _field.getXY((x + 1) % size, (y + 1) % size);
+					aliveNeighbours += (int)_field.getXY((x - 1 + size) % size, (y + 1) % size);
+					aliveNeighbours += (int)_field.getXY(x % size, (y + 1) % size);
+					aliveNeighbours += (int)_field.getXY((x + 1) % size, (y + 1) % size);
 
 					CellState oldState = buf.getXY(x, y);
-					CellState newState;
-					if (oldState == CellState::Alive) {
-						if (aliveNeighbours != 3) {
-							newState = Dead;
-							isEnd = false;
-						}
-						else {
+					CellState newState = oldState;
+					if (oldState == CellState::Dead) {
+						if (aliveNeighbours == 3) {
 							newState = Alive;
+							_isEnd = false;
 						}
 					}
 					else {
-						if ((aliveNeighbours >= 2) && (aliveNeighbours <= 3)) {
-							newState = Alive;
-							isEnd = false;
-						}
-						else {
+						if ((aliveNeighbours < 2) || (aliveNeighbours > 3)) {
 							newState = Dead;
+							_isEnd = false;
 						}
 					}
 
 					buf.setXY(x, y, newState);
 				}
 			}
+
+			_field = buf;
 		}
 	}
-	
+
 	const std::string GameModel::fieldToStr() {
 		return MatrixSerializator::Serialize(_field);
 	}

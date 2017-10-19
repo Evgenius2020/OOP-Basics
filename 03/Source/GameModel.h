@@ -7,7 +7,7 @@
 namespace GameOfLifeModel {
 	class GameModel {
 	private:
-		SquareMatrix<CellState> _field;
+		SquareMatrix _field;
 		unsigned int _stepNumber;
 		bool _isEnd;
 	public:

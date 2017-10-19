@@ -6,7 +6,7 @@
 namespace GameOfLifeModel {
 	class MatrixSerializator {
 	public:
-		static std::string Serialize(SquareMatrix<CellState> matrix);
-		static SquareMatrix<CellState> Deserialize(const std::string str);
+		static std::string Serialize(SquareMatrix matrix);
+		static SquareMatrix Deserialize(const std::string str);
 	};
 }

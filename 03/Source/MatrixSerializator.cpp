@@ -11,7 +11,7 @@ namespace GameOfLifeModel {
 	static std::map<CellState, char> CellSerializationRule = { { CellState::Dead, '.' }, { CellState::Alive, '*' } };
 	static std::map<char, CellState> CellDeserializationRule = { { '.', CellState::Dead }, { '*', CellState::Alive } };
 
-	std::string GameOfLifeModel::MatrixSerializator::Serialize(SquareMatrix<CellState> matrix) {
+	std::string MatrixSerializator::Serialize(SquareMatrix matrix) {
 		std::stringstream result;
 		int size = matrix.getSize();
 
@@ -25,7 +25,7 @@ namespace GameOfLifeModel {
 		return result.str();
 	}
 
-	SquareMatrix<CellState> MatrixSerializator::Deserialize(const std::string str) {
+	SquareMatrix MatrixSerializator::Deserialize(const std::string str) {
 		int length = str.length();
 		std::list<CellState> values;
 		
@@ -36,7 +36,7 @@ namespace GameOfLifeModel {
 		}
 
 		int size = (int)sqrt(values.size());
-		SquareMatrix<CellState> result(size);
+		SquareMatrix result(size);
 		std::list<CellState>::iterator it = values.begin();
 
 		for (int y = 0; y < size; ++y) {
