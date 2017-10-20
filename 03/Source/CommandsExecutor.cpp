@@ -23,7 +23,7 @@ namespace GameOfLifeController {
 				return "Success!";
 			}
 		}
-		else if (cmd.substr(0, 5) == "clear") {
+		else if ((cmd.substr(0, 5) == "clear") && (cmd.length() == 8)) {
 			int x = cmd[6] - 'A';
 			int y = cmd[7] - '0';
 			if ((x < 0) && (x >= gameModel.getFieldSize())
@@ -32,7 +32,11 @@ namespace GameOfLifeController {
 				return "Success!";
 			}
 		}
-
-			return "Wrong Command";
+		else if (cmd.substr(0, 4) == "back") {
+			gameModel.back();
+			return "Success!";
 		}
+
+		return "Wrong Command";
 	}
+}

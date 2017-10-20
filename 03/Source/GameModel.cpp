@@ -10,6 +10,7 @@ namespace GameOfLifeModel {
 	GameModel::GameModel(unsigned int fieldSize) {
 		_field = SquareMatrix(fieldSize);
 		_isEnd = false;
+		_history = std::vector<SquareMatrix>();
 		_stepNumber = 0;
 	}
 
@@ -35,6 +36,7 @@ namespace GameOfLifeModel {
 	}
 
 	void GameModel::set(int x, int y, CellState cellState) {
+		_history.push_back(SquareMatrix(_field));
 		_isEnd = false;
 		_field.setXY(x, y, cellState);
 	}
@@ -82,7 +84,15 @@ namespace GameOfLifeModel {
 				}
 			}
 
+			_history.push_back(SquareMatrix(_field));
 			_field = buf;
+		}
+	}
+
+	void GameModel::back() {
+		if (_history.size()) {
+			_field = _history.back();
+			_history.pop_back();
 		}
 	}
 

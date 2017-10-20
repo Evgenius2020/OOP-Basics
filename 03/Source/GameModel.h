@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <map>
+#include <vector>
 #include "CellState.h"
 #include "SquareMatrix.h"
 
@@ -8,6 +9,7 @@ namespace GameOfLifeModel {
 	class GameModel {
 	private:
 		SquareMatrix _field;
+		std::vector<SquareMatrix> _history;
 		unsigned int _stepNumber;
 		bool _isEnd;
 	public:
