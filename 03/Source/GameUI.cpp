@@ -2,6 +2,7 @@
 #include "GameUI.h"
 #include "GameModel.h"
 #include "CommandsExecutor.h"
+#include "MatrixSerializator.h"
 
 void printHelp() {
 	std::cout << "Help here" << std::endl;
@@ -18,7 +19,7 @@ namespace GameOfLifeView {
 			if (_gameModel.getIsEnd()) {
 				std::cout << "Game Stoped!" << std::endl;
 			}
-			std::cout << _gameModel.fieldToStr() << std::endl;
+			std::cout << GameOfLifeModel::MatrixSerializator::Serialize(_gameModel.getField()) << std::endl;
 			std::getline(std::cin, cmd);
 			
 			if (cmd == "exit") {

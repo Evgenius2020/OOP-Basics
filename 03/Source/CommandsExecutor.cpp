@@ -1,20 +1,21 @@
 #include <string>
 #include "CommandsExecutor.h"
+#include "MatrixSerializator.h"
 
-static const std::map<std::string, int> ConsoleInterface = { { "reset", 0 },{ "set", 1 },{ "clear", 1 }, { "step", 1}, { "back", 0 } ,{ "save", 1 },{ "load", 1 } };
+// ConsoleInterface = { { "reset", 0 },{ "set", 1 },{ "clear", 1 }, { "step", 1}, { "back", 0 } ,{ "save", 1 },{ "load", 1 } };
 
 namespace GameOfLifeController {
 	const std::string CommandsExecutor::Execute(std::string cmd, GameOfLifeModel::GameModel& gameModel) {
-		if (cmd.substr(0, 5) == "reset") {
+		if ((cmd.length() == 5) && (cmd.substr(0, 5) == "reset")) {
 			gameModel.reset();
-			return "Succesfully Reseted!";
+			return "Success!";
 		}
-		else if (cmd.substr(0, 4) == "step") {
+		else if ((cmd.length() >= 6) && (cmd.substr(0, 4) == "step")) {
 			int steps = atoi(cmd.substr(5).data());
 			gameModel.step(steps);
 			return "Success!";
 		}
-		else if ((cmd.substr(0, 3) == "set") && (cmd.length() == 6)) {
+		else if ((cmd.length() == 6) && (cmd.substr(0, 3) == "set")) {
 			int x = cmd[4] - 'A';
 			int y = cmd[5] - '0';
 			if ((x >= 0) && (x < gameModel.getFieldSize())
@@ -23,7 +24,7 @@ namespace GameOfLifeController {
 				return "Success!";
 			}
 		}
-		else if ((cmd.substr(0, 5) == "clear") && (cmd.length() == 8)) {
+		else if ((cmd.length() == 8) && (cmd.substr(0, 5) == "clear")) {
 			int x = cmd[6] - 'A';
 			int y = cmd[7] - '0';
 			if ((x < 0) && (x >= gameModel.getFieldSize())
@@ -32,8 +33,18 @@ namespace GameOfLifeController {
 				return "Success!";
 			}
 		}
-		else if (cmd.substr(0, 4) == "back") {
+		else if (cmd == "back") {
 			gameModel.back();
+			return "Success!";
+		}
+		else if ((cmd.length() >= 6) && (cmd.substr(0, 4) == "save")) {
+			std::string path = cmd.substr(5);
+			GameOfLifeModel::MatrixSerializator::SerializeToFile(gameModel.getField(), path);
+			return "Success!";
+		}
+		else if ((cmd.length() >= 6) && (cmd.substr(0, 4) == "load")) {
+			std::string path = cmd.substr(5);
+			GameOfLifeModel::MatrixSerializator::DeserializeFromFile(path);
 			return "Success!";
 		}
 

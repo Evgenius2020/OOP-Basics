@@ -8,5 +8,7 @@ namespace GameOfLifeModel {
 	public:
 		static std::string Serialize(SquareMatrix matrix);
 		static SquareMatrix Deserialize(const std::string str);
+		static bool SerializeToFile(SquareMatrix matrix, const std::string path);
+		static SquareMatrix DeserializeFromFile(const std::string path);
 	};
 }

@@ -11,11 +11,16 @@ namespace GameOfLifeModel {
 		_field = SquareMatrix(fieldSize);
 		_isEnd = false;
 		_history = std::vector<SquareMatrix>();
-		_stepNumber = 0;
 	}
 
-	unsigned int GameModel::getStepNumber() {
-		return _stepNumber;
+	const SquareMatrix GameModel::getField() {
+		return _field;
+	}
+
+	void GameModel::SetField(SquareMatrix field) {
+		_isEnd = false;
+		_history.push_back(SquareMatrix(_field));
+		_field = field;
 	}
 
 	unsigned int GameModel::getFieldSize() {
@@ -28,8 +33,8 @@ namespace GameOfLifeModel {
 
 	void GameModel::reset() {
 		_isEnd = false;
-		for (unsigned int y = 0; y < getFieldSize(); ++y) {
-			for (unsigned int x = 0; x < getFieldSize(); ++x) {
+		for (unsigned int y = 0; y < _field.getSize(); ++y) {
+			for (unsigned int x = 0; x < _field.getSize(); ++x) {
 				_field.setXY(x, y, CellState::Dead);
 			}
 		}
@@ -94,14 +99,5 @@ namespace GameOfLifeModel {
 			_field = _history.back();
 			_history.pop_back();
 		}
-	}
-
-	const std::string GameModel::fieldToStr() {
-		return MatrixSerializator::Serialize(_field);
-	}
-
-	void GameModel::setFieldFromStr(const std::string str) {
-		_field = MatrixSerializator::Deserialize(str);
-		_isEnd = false;
 	}
 }
