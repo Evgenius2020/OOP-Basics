@@ -34,7 +34,7 @@ namespace GameOfLifeModel {
 		
 		for (int i = 0; i < length; i++) {
 			if (CellDeserializationRule.find(str[i]) != CellDeserializationRule.end()) {
-				values.push_front(CellDeserializationRule[str[i]]);
+				values.push_back(CellDeserializationRule[str[i]]);
 			}
 		}
 

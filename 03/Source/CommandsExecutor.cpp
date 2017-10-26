@@ -44,7 +44,7 @@ namespace GameOfLifeController {
 		}
 		else if ((cmd.length() >= 6) && (cmd.substr(0, 4) == "load")) {
 			std::string path = cmd.substr(5);
-			GameOfLifeModel::MatrixSerializator::DeserializeFromFile(path);
+			gameModel.setField(GameOfLifeModel::MatrixSerializator::DeserializeFromFile(path));
 			return "Success!";
 		}
 

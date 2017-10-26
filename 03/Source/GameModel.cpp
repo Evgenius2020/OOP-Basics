@@ -17,7 +17,7 @@ namespace GameOfLifeModel {
 		return _field;
 	}
 
-	void GameModel::SetField(SquareMatrix field) {
+	void GameModel::setField(SquareMatrix field) {
 		_isEnd = false;
 		_history.push_back(SquareMatrix(_field));
 		_field = field;

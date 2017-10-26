@@ -16,7 +16,7 @@ namespace GameOfLifeModel {
 		GameModel(unsigned int fieldSize);
 
 		const SquareMatrix getField();
-		void SetField(SquareMatrix field);
+		void setField(SquareMatrix field);
 		unsigned int getFieldSize();
 		bool getIsEnd();
 
