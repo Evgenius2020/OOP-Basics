@@ -1,9 +1,14 @@
 [Bb]in/
 [Oo]bj/
 Debug/
+Testing/
 *.suo
 .vs/
 *sdf
 *.swp
 *.VC.*
 x64/
+*tlog/*
+*.obj
+*.idb
+*.log

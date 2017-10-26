@@ -1,4 +1,4 @@
-#include "gtest.cpp"
+#include "gtest.h"
 #include "SquareMatrix.h"
 
 using namespace GameOfLifeModel;
