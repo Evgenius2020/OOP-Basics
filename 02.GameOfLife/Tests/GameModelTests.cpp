@@ -49,3 +49,23 @@ TEST(GameModelTests, BackReset) {
 	model.back();
 	ASSERT_EQ(0, model.getFieldSize());
 }
+
+TEST(GameModelTests, GetIsEnd) {
+	GameModel model(4);
+	model.step();
+	ASSERT_TRUE(model.getIsEnd());
+	model.set(3, 1, CellState::Dead);
+	ASSERT_FALSE(model.getIsEnd());
+	model.step();
+	ASSERT_TRUE(model.getIsEnd());
+
+	model.set(3, 1, CellState::Alive);
+	ASSERT_FALSE(model.getIsEnd());
+	model.step();
+	ASSERT_FALSE(model.getIsEnd());
+	model.step();
+	ASSERT_TRUE(model.getIsEnd());
+
+	model.reset();
+	ASSERT_FALSE(model.getIsEnd());
+}

@@ -68,5 +68,8 @@
     <ClCompile Include="Tests\GameModelStepTests.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
+    <ClCompile Include="Tests\CommandExecutorTests.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

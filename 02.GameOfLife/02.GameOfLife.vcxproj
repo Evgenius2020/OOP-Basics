@@ -41,6 +41,7 @@
     <ClCompile Include="Source\MatrixSerializator.cpp" />
     <ClCompile Include="Source\program.cpp" />
     <ClCompile Include="Source\SquareMatrix.cpp" />
+    <ClCompile Include="Tests\CommandExecutorTests.cpp" />
     <ClCompile Include="Tests\GameModelStepTests.cpp" />
     <ClCompile Include="Tests\GameModelTests.cpp" />
     <ClCompile Include="Tests\MatrixSerializatorTests.cpp" />
