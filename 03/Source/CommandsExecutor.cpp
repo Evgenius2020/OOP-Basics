@@ -12,7 +12,7 @@ namespace GameOfLifeController {
 		}
 		else if ((cmd.length() >= 6) && (cmd.substr(0, 4) == "step")) {
 			int steps = atoi(cmd.substr(5).data());
-			for (int i = 0; i < steps; ++i) {
+			for (int i = 0; i < steps; i++) {
 				gameModel.step();
 			}
 			return "Success!";
