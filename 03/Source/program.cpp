@@ -1,6 +1,6 @@
 #include "GameUI.h"
 #include "gtest.cpp"
-
+#include <iostream>
 int main(int argc, char* argv[]) {
 #ifdef TESTING
 	::testing::InitGoogleTest(&argc, argv);

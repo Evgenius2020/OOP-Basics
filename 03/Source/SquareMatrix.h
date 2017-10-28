@@ -14,6 +14,8 @@ namespace GameOfLifeModel {
 		unsigned int getSize();
 
 		SquareMatrix& operator=(const SquareMatrix& another);
+		bool operator==(const SquareMatrix another) const;
+		bool operator!=(const SquareMatrix another) const;
 
 		CellState getXY(unsigned int x, unsigned int y);
 		void setXY(unsigned int x, unsigned int y, CellState val);

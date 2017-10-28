@@ -3,6 +3,15 @@
 
 using namespace GameOfLifeModel;
 
+TEST(SquareMatrixTests, ConstructorDefautValues) {
+	SquareMatrix matrix(5);
+	for (unsigned int y = 0; y < 5; y++) {
+		for (unsigned int x = 0; x < 5; x++) {
+			ASSERT_EQ(CellState::Dead, matrix.getXY(x, y));
+		}
+	}
+}
+
 TEST(SquareMatrixTests, ConstructorsTestsGetSize) {
 	SquareMatrix matrix = SquareMatrix();
 	ASSERT_EQ(0, matrix.getSize());
@@ -27,9 +36,21 @@ TEST(SquareMatrixTests, CopyConstructorGetSet) {
 	ASSERT_NE(matrix.getXY(1, 4), matrixCopy.getXY(1, 4));
 }
 
-TEST(SquareMatrixTests, AssignOperatorTests) {
+TEST(SquareMatrixTests, AssignOperator) {
 	SquareMatrix matrix1(3);
 	SquareMatrix matrix2(5);
 	ASSERT_NE(matrix1.getSize(), matrix2.getSize());
 	matrix2.setXY(4, 4, CellState::Alive);
+}
+
+TEST(SquareMatrixTests, EqualOperator) {
+	SquareMatrix matrix1(3);
+	SquareMatrix matrix2(3);
+	ASSERT_TRUE(matrix1 == matrix2);
+	ASSERT_EQ(matrix1, matrix2);
+	matrix1.setXY(0, 0, CellState::Alive);
+	ASSERT_FALSE(matrix1 == matrix2);
+	ASSERT_NE(matrix1, matrix2);
+	SquareMatrix matrix3(0);
+	ASSERT_NE(matrix1, matrix2);
 }

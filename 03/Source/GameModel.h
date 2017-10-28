@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-#include <map>
 #include <vector>
 #include "CellState.h"
 #include "SquareMatrix.h"

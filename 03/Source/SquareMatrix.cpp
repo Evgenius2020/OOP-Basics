@@ -36,6 +36,22 @@ namespace GameOfLifeModel {
 		return *this;
 	}
 
+	bool SquareMatrix::operator==(const SquareMatrix another) const {
+		if (_size != another._size) {
+			return false;
+		}
+		for (int i = 0; i < _size * _size; ++i) {
+			if (_data[i] != another._data[i]) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	bool SquareMatrix::operator!=(const SquareMatrix another) const {
+		return !(*this == another);
+	}
+
 	CellState SquareMatrix::getXY(unsigned int x, unsigned int y) {
 		return _data[y * _size + x];
 	}

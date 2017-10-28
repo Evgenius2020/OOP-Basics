@@ -5,13 +5,13 @@
 #include "MatrixSerializator.h"
 
 namespace GameOfLifeModel {
-	GameModel::GameModel() : GameModel(0) {}
-
 	GameModel::GameModel(unsigned int fieldSize) {
 		_field = SquareMatrix(fieldSize);
 		_isEnd = false;
 		_history = std::vector<SquareMatrix>();
 	}
+
+	GameModel::GameModel() : GameModel(0) {};
 
 	const SquareMatrix GameModel::getField() {
 		return _field;
@@ -32,12 +32,7 @@ namespace GameOfLifeModel {
 	}
 
 	void GameModel::reset() {
-		_isEnd = false;
-		for (unsigned int y = 0; y < _field.getSize(); ++y) {
-			for (unsigned int x = 0; x < _field.getSize(); ++x) {
-				_field.setXY(x, y, CellState::Dead);
-			}
-		}
+		setField(SquareMatrix(getFieldSize()));
 	}
 
 	void GameModel::set(int x, int y, CellState cellState) {
