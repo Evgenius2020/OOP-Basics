@@ -10,7 +10,7 @@ void runTestCase(std::string in, std::string expect) {
 	SquareMatrix expectField = MatrixSerializator::Deserialize(expect);
 	GameModel model(0);
 	model.setField(inField);
-	model.step(1);
+	model.step();
 	SquareMatrix actual = model.getField();
 	ASSERT_EQ(expectField, actual);
 }

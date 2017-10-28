@@ -21,7 +21,7 @@ namespace GameOfLifeModel {
 
 		void reset();
 		void set(int x, int y, CellState cellState);
-		void step(unsigned int n);
+		void step();
 		void back();
 	};
 }
