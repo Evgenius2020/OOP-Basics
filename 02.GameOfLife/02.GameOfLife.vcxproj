@@ -50,6 +50,7 @@
     <ProjectGuid>{AA81E2A3-378B-4621-A1F8-EFF36FEE0DDE}</ProjectGuid>
     <RootNamespace>My03</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <ProjectName>02.GameOfLIfe</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
