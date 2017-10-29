@@ -4,7 +4,7 @@
 
 using namespace GameOfLifeModel;
 
-TEST(MatrisSerializatorTests, SaveLoad) {
+TEST(MatrixSerializatorTests, SaveLoad) {
 	SquareMatrix matrix(5);
 	matrix.setXY(4, 1, CellState::Alive);
 	MatrixSerializator::SerializeToFile(matrix, "buf");

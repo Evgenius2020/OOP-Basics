@@ -12,7 +12,7 @@ namespace GameOfLifeController {
 		}
 		else if ((cmd.length() >= 6) && (cmd.substr(0, 4) == "step")) {
 			int steps = atoi(cmd.substr(5).data());
-			for (int i = 0; i < steps; i++) {
+			for (int i = 0; i < steps; ++i) {
 				gameModel.step();
 			}
 			return "Success!";
@@ -29,8 +29,8 @@ namespace GameOfLifeController {
 		else if ((cmd.length() == 8) && (cmd.substr(0, 5) == "clear")) {
 			int x = cmd[6] - 'A';
 			int y = cmd[7] - '0';
-			if ((x < 0) && (x >= gameModel.getFieldSize())
-				&& (y < 0) && (y >= gameModel.getFieldSize())) {
+			if ((x >= 0) && (x < gameModel.getFieldSize())
+				&& (y >= 0) && (y < gameModel.getFieldSize())) {
 				gameModel.set(x, y, GameOfLifeModel::CellState::Dead);
 				return "Success!";
 			}
