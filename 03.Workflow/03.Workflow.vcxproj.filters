@@ -13,33 +13,48 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Workers">
+      <UniqueIdentifier>{5981ac28-ad95-4c88-9dd3-b1588d1d9cbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Execution">
+      <UniqueIdentifier>{f72f0832-e62a-48f7-9572-5032f8d22c10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Execution">
+      <UniqueIdentifier>{12c5e66c-cae6-4348-8a6d-ff647e17b164}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Workers">
+      <UniqueIdentifier>{d204e1c5-7078-4e3d-a265-80a5536b90ec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Worker.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Source\InputWorker.h">
+      <Filter>Header Files\Workers</Filter>
     </ClInclude>
     <ClInclude Include="Source\OutputWorker.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Workers</Filter>
     </ClInclude>
-    <ClInclude Include="Source\InputWorker.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Source\BaseWorker.h">
+      <Filter>Header Files\Workers</Filter>
     </ClInclude>
-    <ClInclude Include="Source\program.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Source\WorkflowExecutor.h">
+      <Filter>Header Files\Execution</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Worker.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\InputWorker.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\OutputWorker.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\program.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\WorkflowExecutor.cpp">
+      <Filter>Source Files\Execution</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InputWorker.cpp">
+      <Filter>Source Files\Workers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\OutputWorker.cpp">
+      <Filter>Source Files\Workers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BaseWorker.cpp">
+      <Filter>Source Files\Workers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

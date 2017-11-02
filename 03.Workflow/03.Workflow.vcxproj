@@ -90,6 +90,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)googletest;$(ProjectDir)Source</AdditionalIncludeDirectories>
+      <AdditionalOptions>/std:c++latest</AdditionalOptions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -98,6 +99,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)googletest;$(ProjectDir)Source</AdditionalIncludeDirectories>
+      <AdditionalOptions>/std:c++latest</AdditionalOptions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -108,6 +110,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)googletest;$(ProjectDir)Source</AdditionalIncludeDirectories>
+      <AdditionalOptions>/std:c++latest</AdditionalOptions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -122,6 +125,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)googletest;$(ProjectDir)Source</AdditionalIncludeDirectories>
+      <AdditionalOptions>/std:c++latest</AdditionalOptions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -131,14 +135,15 @@
   <ItemGroup>
     <ClInclude Include="Source\InputWorker.h" />
     <ClInclude Include="Source\OutputWorker.h" />
-    <ClInclude Include="Source\program.h" />
-    <ClInclude Include="Source\Worker.h" />
+    <ClInclude Include="Source\BaseWorker.h" />
+    <ClInclude Include="Source\WorkflowExecutor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\InputWorker.cpp" />
     <ClCompile Include="Source\OutputWorker.cpp" />
     <ClCompile Include="Source\program.cpp" />
-    <ClCompile Include="Source\Worker.cpp" />
+    <ClCompile Include="Source\BaseWorker.cpp" />
+    <ClCompile Include="Source\WorkflowExecutor.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

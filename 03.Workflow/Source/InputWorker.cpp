@@ -2,8 +2,8 @@
 #include <fstream>
 #include "InputWorker.h"
 
-namespace WorkFlow {
-	InputWorker::InputWorker(std::vector<std::string> args) : Worker(args) {};
+namespace Workflow::Workers {
+	InputWorker::InputWorker(std::vector<std::string> args) : BaseWorker(args) {};
 
 	unsigned int InputWorker::getValidArgsNumber() {
 		return 1;
