@@ -5,14 +5,16 @@
 namespace Workflow::Workers {
 	class BaseWorker {
 	protected:
+		int _id;
 		std::vector<std::string> _args;
 	public:
 		BaseWorker();
 		BaseWorker(const BaseWorker&);
-		BaseWorker(std::vector<std::string> args);
+		BaseWorker(int id, std::vector<std::string> args);
 
-		std::vector<std::string> getArgs();
-		virtual unsigned int getValidArgsNumber();
-		virtual std::string execute(std::string input);
+		int GetId();
+		std::vector<std::string> GetArgs();
+		virtual unsigned int GetValidArgsNumber();
+		virtual std::string Execute(std::string input);
 	};
 }

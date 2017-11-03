@@ -91,6 +91,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)googletest;$(ProjectDir)Source</AdditionalIncludeDirectories>
       <AdditionalOptions>/std:c++latest</AdditionalOptions>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -100,6 +101,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)googletest;$(ProjectDir)Source</AdditionalIncludeDirectories>
       <AdditionalOptions>/std:c++latest</AdditionalOptions>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -111,6 +113,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)googletest;$(ProjectDir)Source</AdditionalIncludeDirectories>
       <AdditionalOptions>/std:c++latest</AdditionalOptions>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -126,6 +129,7 @@
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)googletest;$(ProjectDir)Source</AdditionalIncludeDirectories>
       <AdditionalOptions>/std:c++latest</AdditionalOptions>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -136,11 +140,14 @@
     <ClInclude Include="Source\InputWorker.h" />
     <ClInclude Include="Source\OutputWorker.h" />
     <ClInclude Include="Source\BaseWorker.h" />
+    <ClInclude Include="Source\Parser.h" />
+    <ClInclude Include="Source\FileParsingResult.h" />
     <ClInclude Include="Source\WorkflowExecutor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\InputWorker.cpp" />
     <ClCompile Include="Source\OutputWorker.cpp" />
+    <ClCompile Include="Source\Parser.cpp" />
     <ClCompile Include="Source\program.cpp" />
     <ClCompile Include="Source\BaseWorker.cpp" />
     <ClCompile Include="Source\WorkflowExecutor.cpp" />

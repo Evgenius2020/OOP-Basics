@@ -6,7 +6,7 @@ namespace Workflow::Execution {
 		Workers::BaseWorker* current;
 		for (unsigned int i = 0; i < workers.size(); ++i) {
 			current = workers[i];
-			buffer = current->execute(buffer);
+			buffer = current->Execute(buffer);
 		}
 	}
 }

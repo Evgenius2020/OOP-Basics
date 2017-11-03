@@ -1,24 +1,47 @@
-#include <vector>
+#include <iostream>
 #include <string>
 #include "WorkflowExecutor.h"
-#include "InputWorker.h"
-#include "OutputWorker.h"
+#include "WorkflowBuilder.h"
+#include "FileParser.h"
 
 using namespace Workflow;
 
-void main() {
-	std::vector<Workers::BaseWorker*> _workers(0);
+void main(int argc, char* argv[]) {
+	try {
+		std::string workflowFileName = argv[1];
+		Building::WorkflowBuilder workFlowBuilder(Building::FileParser::Parse(workflowFileName));
 
-	std::vector<std::string> inputWorkerArgs(0);
-	inputWorkerArgs.push_back("in.txt");
-	Workers::InputWorker inputWorker(inputWorkerArgs);
+		std::string inputWorkerName = "";
+		std::string outputWorkerName = "";
+		if (argc >= 4) {
+			if (argv[2] == "-i") {
+				inputWorkerName = argv[3];
+			}
+			else if (argv[2] == "-o") {
+				outputWorkerName = argv[3];
+			}
+			if (argc == 6) {
+				if (argv[4] == "-i") {
+					inputWorkerName = argv[5];
+				}
+				else if (argv[4] == "-o") {
+					outputWorkerName = argv[5];
+				}
+			}
+		}
+		if (inputWorkerName != "") {
+			std::vector<std::string> args = { inputWorkerName };
+			workFlowBuilder.AppendInputWorker(Workers::InputWorker(-1, args));
+		}
+		if (outputWorkerName != "") {
+			std::vector<std::string> args = { outputWorkerName };
+			workFlowBuilder.AppendOutputWorker(Workers::OutputWorker(-1, args));
+		}
 
-	std::vector<std::string> outputWorkerArgs(0);
-	outputWorkerArgs.push_back("out.txt");
-	Workers::OutputWorker outputWorker(outputWorkerArgs);
-
-	_workers.push_back(&inputWorker);
-	_workers.push_back(&outputWorker);
-
-	Execution::WorkflowExecutor::Execute(_workers);
+		std::vector<Workers::BaseWorker*> workers = workFlowBuilder.GetWorkflow();
+		Execution::WorkflowExecutor::Execute(workers);
+	}
+	catch (std::string exception) {
+		std::cerr << exception << std::endl;
+	}
 }
