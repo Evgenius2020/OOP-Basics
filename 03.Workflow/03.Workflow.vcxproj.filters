@@ -25,10 +25,10 @@
     <Filter Include="Source Files\Workers">
       <UniqueIdentifier>{d204e1c5-7078-4e3d-a265-80a5536b90ec}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Parsing">
+    <Filter Include="Header Files\Building">
       <UniqueIdentifier>{d7d8e819-f3b6-45c6-a750-84ff23aab85d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Parisng">
+    <Filter Include="Source Files\Building">
       <UniqueIdentifier>{f076b5f3-3e74-45e8-b15b-caece7eb09cf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -45,11 +45,14 @@
     <ClInclude Include="Source\WorkflowExecutor.h">
       <Filter>Header Files\Execution</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Parser.h">
-      <Filter>Header Files\Parsing</Filter>
+    <ClInclude Include="Source\WorkflowBuilder.h">
+      <Filter>Header Files\Building</Filter>
     </ClInclude>
-    <ClInclude Include="Source\FileParsingResult.h">
-      <Filter>Header Files\Parsing</Filter>
+    <ClInclude Include="Source\InputMetadata.h">
+      <Filter>Header Files\Building</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\InputParser.h">
+      <Filter>Header Files\Building</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -68,8 +71,8 @@
     <ClCompile Include="Source\BaseWorker.cpp">
       <Filter>Source Files\Workers</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Parser.cpp">
-      <Filter>Source Files\Parisng</Filter>
+    <ClCompile Include="Source\WorkflowBuilder.cpp">
+      <Filter>Source Files\Building</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

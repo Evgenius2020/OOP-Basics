@@ -137,17 +137,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Source\InputParser.h" />
     <ClInclude Include="Source\InputWorker.h" />
     <ClInclude Include="Source\OutputWorker.h" />
     <ClInclude Include="Source\BaseWorker.h" />
-    <ClInclude Include="Source\Parser.h" />
-    <ClInclude Include="Source\FileParsingResult.h" />
+    <ClInclude Include="Source\WorkflowBuilder.h" />
+    <ClInclude Include="Source\InputMetadata.h" />
     <ClInclude Include="Source\WorkflowExecutor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\InputWorker.cpp" />
     <ClCompile Include="Source\OutputWorker.cpp" />
-    <ClCompile Include="Source\Parser.cpp" />
+    <ClCompile Include="Source\WorkflowBuilder.cpp" />
     <ClCompile Include="Source\program.cpp" />
     <ClCompile Include="Source\BaseWorker.cpp" />
     <ClCompile Include="Source\WorkflowExecutor.cpp" />
