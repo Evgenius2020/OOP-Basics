@@ -18,6 +18,10 @@ int main(int argc, char* argv[]) {
 	}
 
 	try {
+		std::fstream fs;
+		fs.open(args[0], std::fstream::in);
+		std::string rawWorkflow((std::istreambuf_iterator<char>()), std::istreambuf_iterator<char>());
+		args[0] = rawWorkflow;
 		Building::InputMetadata inputMetadata = Building::InputParser::Parse(args);
 		std::vector<Workers::BaseWorker*> workflow = Building::WorkflowBuilder::Build(inputMetadata);
 		Execution::WorkflowExecutor::Execute(workflow);

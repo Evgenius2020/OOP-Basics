@@ -57,6 +57,9 @@
     <ClInclude Include="Source\InputParser.h">
       <Filter>Header Files\Building</Filter>
     </ClInclude>
+    <ClInclude Include="Source\BuildingExceptions.h">
+      <Filter>Header Files\Building</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\program.cpp">
@@ -81,7 +84,7 @@
       <Filter>Tests</Filter>
     </ClCompile>
     <ClCompile Include="Source\InputParser.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Building</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

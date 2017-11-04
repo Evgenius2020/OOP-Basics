@@ -9,6 +9,6 @@ namespace Building {
 		std::string SpecifiedInput;
 		std::string SpecifiedOutput;
 		std::map<int, std::vector<std::string>> NonParsedWorkersMap;
-		std::vector<int> ExecutionOrder;
+		std::vector<int> WorkflowSequence;
 	};
 }
