@@ -2,7 +2,7 @@
 #include <fstream>
 #include "InputWorker.h"
 
-namespace Workflow::Workers {
+namespace Workers {
 	InputWorker::InputWorker(int id, std::vector<std::string> args) : BaseWorker(id, args) {};
 
 	unsigned int InputWorker::GetValidArgsNumber() {

@@ -1,6 +1,6 @@
 #include "BaseWorker.h"
 
-namespace Workflow::Workers {
+namespace Workers {
 	BaseWorker::BaseWorker() : _args(std::vector<std::string>(0)) {}
 
 	BaseWorker::BaseWorker(const BaseWorker& worker) : _args(worker._args) {}

@@ -5,7 +5,7 @@
 #include "BaseWorker.h"
 #include "InputMetadata.h"
 
-namespace Workflow::Building {
+namespace Building {
 	class WorkflowBuilder {
 	public:
 		static std::vector<Workers::BaseWorker*> Build(InputMetadata inputMetadata);

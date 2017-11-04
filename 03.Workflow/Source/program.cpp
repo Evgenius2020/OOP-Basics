@@ -4,10 +4,14 @@
 #include "WorkflowBuilder.h"
 #include "InputMetadata.h"
 #include "InputParser.h"
+#include "gtest.cpp"
 
-using namespace Workflow;
-
-void main(int argc, char* argv[]) {
+int main(int argc, char* argv[]) {
+#ifdef TESTING
+	::testing::InitGoogleTest(&argc, argv);
+	RUN_ALL_TESTS();
+	return 0;
+#else
 	std::vector<std::string> args(0);
 	for (int i = 1; i < argc; i++) {
 		args.push_back(argv[1]);
@@ -21,4 +25,6 @@ void main(int argc, char* argv[]) {
 	catch (std::string exception) {
 		std::cerr << exception << std::endl;
 	}
+	return 0;
+#endif
 }

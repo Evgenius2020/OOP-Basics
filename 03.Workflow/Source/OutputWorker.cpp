@@ -2,7 +2,7 @@
 #include <fstream>
 #include "OutputWorker.h"
 
-namespace Workflow::Workers {
+namespace Workers {
 	OutputWorker::OutputWorker(int id, std::vector<std::string> args) : BaseWorker(id, args) {}
 
 	unsigned int OutputWorker::GetValidArgsNumber() {

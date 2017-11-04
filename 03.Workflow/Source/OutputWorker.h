@@ -1,7 +1,7 @@
 #pragma once
 #include "BaseWorker.h"
 
-namespace Workflow::Workers {
+namespace Workers {
 	class OutputWorker : public BaseWorker {
 	public:
 		OutputWorker(int id, std::vector<std::string> args);

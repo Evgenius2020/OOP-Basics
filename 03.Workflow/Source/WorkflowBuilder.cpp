@@ -2,11 +2,9 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
-#include "Parser.h"
 #include "WorkflowBuilder.h"
-#include "FileMetadata.h"
 
-namespace Workflow::Building {
+namespace Building {
 	/*FileMetadata WorkflowBuilder::ParseWorkflowFile(std::string path) {
 		FileMetadata result;
 

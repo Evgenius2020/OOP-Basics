@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 
-namespace Workflow::Building {
+namespace Building {
 	struct InputMetadata {
 		std::string AdditionalInput;
 		std::string AdditionalOutput;

@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 
-namespace Workflow::Workers {
+namespace Workers {
 	class BaseWorker {
 	protected:
 		int _id;

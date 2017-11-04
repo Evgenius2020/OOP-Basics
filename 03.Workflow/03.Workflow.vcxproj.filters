@@ -31,6 +31,9 @@
     <Filter Include="Source Files\Building">
       <UniqueIdentifier>{f076b5f3-3e74-45e8-b15b-caece7eb09cf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Tests">
+      <UniqueIdentifier>{f54042ec-22ba-48b8-b2c8-2a724d11beeb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\InputWorker.h">
@@ -73,6 +76,12 @@
     </ClCompile>
     <ClCompile Include="Source\WorkflowBuilder.cpp">
       <Filter>Source Files\Building</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\InputParserTests.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\InputParser.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

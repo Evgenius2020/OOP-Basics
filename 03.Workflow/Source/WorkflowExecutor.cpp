@@ -1,6 +1,6 @@
 #include "WorkflowExecutor.h"
 
-namespace Workflow::Execution {
+namespace Execution {
 	void WorkflowExecutor::Execute(std::vector<Workers::BaseWorker*> workers) {
 		std::string buffer = "";
 		Workers::BaseWorker* current;
