@@ -46,14 +46,14 @@ namespace Building {
 				}
 				else {
 					if (result.NonParsedWorkersMap.size() == 0) {
-						throw BeginLabelWithoutWorkers;
+						throw BeginLabelWithoutWorkersException;
 					}
 				}
 				haveEndLabel = true;
 			}
 			else if (currLine.find("->", 0) != std::string::npos) {
 				if (result.NonParsedWorkersMap.size() == 0) {
-					throw SequenceWithoutWorkers;
+					throw SequenceWithoutWorkersException;
 				}
 				std::istringstream lineStream(currLine);
 				int id;
@@ -72,15 +72,18 @@ namespace Building {
 			}
 			else if (currLine.find("=", 0) != std::string::npos) {
 				if (!haveBeginLabel) {
-					throw WorkersWithoutBeginLabel;
+					throw WorkersWithoutBeginLabelException;
 				}
 				std::istringstream lineStream(currLine);
-				int id;
-				lineStream >> id;
+				std::string currWord;
+				lineStream >> currWord;
+				int id = atoi(currWord.data());
+				if (((id == 0) && (currWord != "0")) || (id < 0)) {
+					throw WrongIdException + ": " + currLine;
+				}
 				if (!result.NonParsedWorkersMap[id].empty()) {
 					throw DuplicatedIdsException;
 				}
-				std::string currWord;
 				lineStream >> currWord;
 				if (currWord != "=") {
 					throw NoAssingingSymbolException + ": " + currLine;

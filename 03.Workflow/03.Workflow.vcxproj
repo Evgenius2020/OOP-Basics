@@ -163,6 +163,7 @@
     <ClCompile Include="Source\BaseWorker.cpp" />
     <ClCompile Include="Source\WorkflowExecutor.cpp" />
     <ClCompile Include="Tests\InputParserTests.cpp" />
+    <ClCompile Include="Tests\WorkflowBuilderTests.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

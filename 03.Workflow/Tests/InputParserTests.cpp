@@ -128,17 +128,6 @@ TEST(InputParserTests, PasringWorkflowFileWithoutSequence) {
 	ASSERT_EQ(0, inputMetadata.WorkflowSequence.size());
 }
 
-TEST(InputParserTests, NormalWorkflowFile) {
-	std::string rawWorkflowFile;
-	rawWorkflowFile =
-		"desc\n"
-		"1 = worker1\n"
-		"2 = worker2 arg2_1 arg2_2\n"
-		"3 = worker3 arg3_1\n"
-		"csed";
-	testForException(rawWorkflowFile, NoException);
-}
-
 TEST(InputParserTests, DuplicatedBeginLabelException) {
 	std::string rawWorkflowFile =
 		"desc\n"
@@ -227,26 +216,44 @@ TEST(InputParserTests, UnresolvableLineException) {
 	testForException(rawWorkflowFile, UnresolvableLineException + ": 1 worker1");
 }
 
-TEST(InputParserTests, WorkersWithoutBeginLabel) {
+TEST(InputParserTests, WorkersWithoutBeginLabelException) {
 	std::string rawWorkflowFile;
 	rawWorkflowFile =
 		"1 = worker1\n"
 		"2 = worker2 arg2_1 arg2_2\n"
 		"3 = worker3 arg3_1\n"
 		"csed";
-	testForException(rawWorkflowFile, WorkersWithoutBeginLabel);
+	testForException(rawWorkflowFile, WorkersWithoutBeginLabelException);
 }
 
-TEST(InputParserTests, BeginLabelWithoutWorkers) {
+TEST(InputParserTests, BeginLabelWithoutWorkersException) {
 	std::string rawWorkflowFile;
 	rawWorkflowFile =
 		"desc\n"
 		"csed";
-	testForException(rawWorkflowFile, BeginLabelWithoutWorkers);
+	testForException(rawWorkflowFile, BeginLabelWithoutWorkersException);
 }
 
-TEST(InputParserTests, SequenceWithoutWorkers) {
+TEST(InputParserTests, SequenceWithoutWorkersException) {
 	std::string rawWorkflowFile =
 		"3 -> 2 -> 2 -> 1 -> 3 -> 2";
-	testForException(rawWorkflowFile, SequenceWithoutWorkers);
+	testForException(rawWorkflowFile, SequenceWithoutWorkersException);
+}
+
+TEST(InputParserTests, WrongIdException) {
+	std::string rawWorkflowFile;
+	rawWorkflowFile =
+		"desc\n"
+		"-1 = worker1\n"
+		"2 = worker2 arg2_1 arg2_2\n"
+		"3 = worker3 arg3_1\n"
+		"csed";
+	testForException(rawWorkflowFile, WrongIdException + ": -1 = worker1");
+	rawWorkflowFile =
+		"desc\n"
+		"id1 = worker1\n"
+		"2 = worker2 arg2_1 arg2_2\n"
+		"3 = worker3 arg3_1\n"
+		"csed";
+	testForException(rawWorkflowFile, WrongIdException + ": id1 = worker1");
 }

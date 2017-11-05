@@ -10,7 +10,8 @@ namespace Building {
 	const std::string WrongWorkflowSequenceException = "Parsing: Wrong worklow sequence string";
 	const std::string NoAssingingSymbolException = "Parsing: Worker definition must have a separated '=' symbol, placed after id";
 	const std::string UnresolvableLineException = "Parsing: Unresolvable string";
-	const std::string WorkersWithoutBeginLabel = "Parsing: File contains workers definition, but 'csed' label was not found";
-	const std::string BeginLabelWithoutWorkers = "Parsing: File contains 'csed' label, but workers definition was not found";
-	const std::string SequenceWithoutWorkers = "Parsing: File contains workflow sequence, but not to contains workers definition";
+	const std::string WorkersWithoutBeginLabelException = "Parsing: File contains workers definition, but 'csed' label was not found";
+	const std::string BeginLabelWithoutWorkersException = "Parsing: File contains 'csed' label, but workers definition was not found";
+	const std::string SequenceWithoutWorkersException = "Parsing: File contains workflow sequence, but not to contains workers definition";
+	const std::string WrongIdException = "Parsing: Wrong worker id";
 }

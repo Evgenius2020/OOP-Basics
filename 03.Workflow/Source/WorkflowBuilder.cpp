@@ -1,44 +1,26 @@
 #include <map>
-#include <iostream>
-#include <sstream>
-#include <fstream>
 #include "WorkflowBuilder.h"
+#include "InputWorker.h"
+#include "OutputWorker.h"
 
 namespace Building {
-	/*FileMetadata WorkflowBuilder::ParseWorkflowFile(std::string path) {
-		FileMetadata result;
+	std::vector<Workers::BaseWorker*> WorkflowBuilder::Build(InputMetadata inputMetadata) {
+		std::vector<Workers::BaseWorker*> result(0);
 
-		std::string currLine;
-		std::fstream fs;
-		try {
-			fs.open(path, std::fstream::in);
-			while (1) {
-				std::getline(fs, currLine);
-				if (currLine == "desc") {
-					result.HaveBegin = true;
-				}
-				else if (currLine == "csed") {
-					result.HaveEnd = true;
-					break;
-				}
-				else {
-					std::istringstream iss(currLine);
-					int id;
-					iss >> id;
-					if (!result.NonParsedWorkersMap[id].empty()) {
-						result.HaveDuplicatedId = true;
-					}
-					std::string currArg;
-					while (iss >> currArg) {
-						result.NonParsedWorkersMap[id].push_back(currArg);
-					}
-				}
-			}
+		std::map<int, Workers::BaseWorker*> workers;
+		Workers::BaseWorker* worker;
+		if (inputMetadata.SpecifiedInput != "") {
+			worker = &(Workers::InputWorker(-1, { inputMetadata.SpecifiedInput }));
+			result.push_back(worker);
 		}
-		catch (std::ifstream::failure e) {
-			std::cerr << "Exception opening/reading/closing file\n";
+
+		for (int i = 0; i < inputMetadata.WorkflowSequence.size(); ++i) {
+		}
+		if (inputMetadata.SpecifiedOutput != "") {
+			worker = &(Workers::OutputWorker(-1, { inputMetadata.SpecifiedOutput }));
+			result.push_back(worker);
 		}
 
 		return result;
-	}*/
+	}
 }
