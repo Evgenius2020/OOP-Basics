@@ -29,24 +29,32 @@ namespace Building {
 		}
 		std::string currLine;
 		std::istringstream iss(args[0]);
-		bool haveBegin = false;
-		bool haveEnd = false;
+		bool haveBeginLabel = false;
+		bool haveEndLabel = false;
 
 		while (!iss.eof()) {
 			std::getline(iss, currLine);
 			if (currLine == "desc") {
-				if (haveBegin) {
+				if (haveBeginLabel) {
 					throw DuplicatedBeginLabelException;
 				}
-				haveBegin = true;
+				haveBeginLabel = true;
 			}
 			else if (currLine == "csed") {
-				if (haveEnd) {
+				if (haveEndLabel) {
 					throw DuplicatedEndLabelException;
 				}
-				haveEnd = true;
+				else {
+					if (result.NonParsedWorkersMap.size() == 0) {
+						throw BeginLabelWithoutWorkers;
+					}
+				}
+				haveEndLabel = true;
 			}
 			else if (currLine.find("->", 0) != std::string::npos) {
+				if (result.NonParsedWorkersMap.size() == 0) {
+					throw SequenceWithoutWorkers;
+				}
 				std::istringstream lineStream(currLine);
 				int id;
 				std::string splitSymbol;
@@ -63,6 +71,9 @@ namespace Building {
 				}
 			}
 			else if (currLine.find("=", 0) != std::string::npos) {
+				if (!haveBeginLabel) {
+					throw WorkersWithoutBeginLabel;
+				}
 				std::istringstream lineStream(currLine);
 				int id;
 				lineStream >> id;
@@ -72,7 +83,7 @@ namespace Building {
 				std::string currWord;
 				lineStream >> currWord;
 				if (currWord != "=") {
-					throw NoAssingingSymbolException;
+					throw NoAssingingSymbolException + ": " + currLine;
 				}
 				while (lineStream >> currWord) {
 					result.NonParsedWorkersMap[id].push_back(currWord);
@@ -82,13 +93,10 @@ namespace Building {
 				throw UnresolvableLineException + ": " + currLine;
 			}
 		}
-		if (haveBegin && !haveEnd) {
+		if (haveBeginLabel && !haveEndLabel) {
 			throw BeginWithoutEndException;
 		}
-		if (haveEnd && !haveBegin) {
-			throw EndWithoutBeginException;
-		}
-
+		
 		return result;
 	}
 }
