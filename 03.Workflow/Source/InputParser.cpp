@@ -91,6 +91,9 @@ namespace Building {
 				while (lineStream >> currWord) {
 					result.NonParsedWorkersMap[id].push_back(currWord);
 				}
+				if (result.NonParsedWorkersMap[id].size() == 0) {
+					throw EmptyWorkerDefinitionException + ": " + currLine;
+				}
 			}
 			else {
 				throw UnresolvableLineException + ": " + currLine;

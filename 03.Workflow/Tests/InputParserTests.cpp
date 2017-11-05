@@ -257,3 +257,13 @@ TEST(InputParserTests, WrongIdException) {
 		"csed";
 	testForException(rawWorkflowFile, WrongIdException + ": id1 = worker1");
 }
+
+TEST(InputParserTests, EmptyWorkerDefinitionException){
+	std::string rawWorkflowFile =
+		"desc\n"
+		"1 = \n"
+		"2 = worker2 arg2_1 arg2_2\n"
+		"3 = worker3 arg3_1\n"
+		"csed";
+	testForException(rawWorkflowFile, EmptyWorkerDefinitionException + ": 1 = ");
+}

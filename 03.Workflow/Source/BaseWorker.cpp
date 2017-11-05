@@ -1,9 +1,9 @@
 #include "BaseWorker.h"
 
 namespace Workers {
-	BaseWorker::BaseWorker() : _args(std::vector<std::string>(0)) {}
+	BaseWorker::BaseWorker() : _args(std::vector<std::string>()) {}
 
-	BaseWorker::BaseWorker(const BaseWorker& worker) : _args(worker._args) {}
+	BaseWorker::BaseWorker(const BaseWorker& worker) : _args(std::vector<std::string>(worker._args)) {}
 
 	BaseWorker::BaseWorker(int id, std::vector<std::string> args) : _id(id), _args(args) { };
 
