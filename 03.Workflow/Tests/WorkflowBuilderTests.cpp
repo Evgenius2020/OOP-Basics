@@ -20,6 +20,14 @@ TEST(WorkflowBuilderTests, AppendingWorkers) {
 	workflow = WorkflowBuilder::Build(inputMetadata);
 	ASSERT_EQ(2, workflow.size());
 	BaseWorker* worker;
+
 	worker = workflow[0];
 	ASSERT_EQ(typeid(*worker), typeid(InputWorker));
+	ASSERT_EQ(1, worker->GetArgs()->size());
+	ASSERT_EQ("in.txt", worker->GetArgs()->operator[](0));
+
+	worker = workflow[1];
+	ASSERT_EQ(typeid(*worker), typeid(OutputWorker));
+	ASSERT_EQ(1, worker->GetArgs()->size());
+	ASSERT_EQ("out.txt", worker->GetArgs()->operator[](0));
 }
