@@ -34,6 +34,12 @@
     <Filter Include="Tests">
       <UniqueIdentifier>{f54042ec-22ba-48b8-b2c8-2a724d11beeb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Tools">
+      <UniqueIdentifier>{f79792d0-a20b-4121-a313-b8f0d4825671}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tools">
+      <UniqueIdentifier>{ef0211b1-a542-4e3e-b59b-2892714c8cc0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\InputWorker.h">
@@ -59,6 +65,12 @@
     </ClInclude>
     <ClInclude Include="Source\BuildingExceptions.h">
       <Filter>Header Files\Building</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GrepWorker.h">
+      <Filter>Header Files\Workers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StringHelper.h">
+      <Filter>Header Files\Tools</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +100,15 @@
     </ClCompile>
     <ClCompile Include="Tests\WorkflowBuilderTests.cpp">
       <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GrepWorker.cpp">
+      <Filter>Source Files\Workers</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\WorkersTests.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\StringHelper.cpp">
+      <Filter>Source Files\Tools</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

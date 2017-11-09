@@ -14,7 +14,7 @@ namespace Workers {
 		int GetId();
 		std::vector<std::string> GetArgs();
 		virtual unsigned int GetValidArgsNumber();
-		virtual std::string Execute(std::string input);
+		virtual std::vector<std::string> Execute(std::vector<std::string> input);
 
 		~BaseWorker();
 	};

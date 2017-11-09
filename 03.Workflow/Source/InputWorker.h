@@ -6,7 +6,6 @@ namespace Workers {
 	public:
 		InputWorker(int id, std::vector<std::string> args);
 
-		unsigned int GetValidArgsNumber() override;
-		std::string Execute(std::string input) override;
+		std::vector<std::string> Execute(std::vector<std::string> input) override;
 	};
 }

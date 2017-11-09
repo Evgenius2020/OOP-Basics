@@ -14,11 +14,11 @@ namespace Workers {
 	}
 
 	unsigned int BaseWorker::GetValidArgsNumber() {
-		return 0;
+		return 1;
 	}
 
-	std::string BaseWorker::Execute(std::string input) {
-		return std::string();
+	std::vector<std::string> BaseWorker::Execute(std::vector<std::string> input) {
+		return input;
 	}
 
 	BaseWorker::~BaseWorker() {

@@ -2,11 +2,11 @@
 
 namespace Execution {
 	void WorkflowExecutor::Execute(std::vector<Workers::BaseWorker*> workers) {
-		std::string buffer = "";
-		Workers::BaseWorker* current;
+		Workers::BaseWorker* currentWorker;
+		std::vector<std::string> currentInput;
 		for (unsigned int i = 0; i < workers.size(); ++i) {
-			current = workers[i];
-			buffer = current->Execute(buffer);
+			currentWorker = workers[i];
+			currentInput = currentWorker->Execute(currentInput);
 		}
 	}
 }
