@@ -25,10 +25,10 @@ namespace Building {
 			}
 
 			if (workerName == "readfile") {
-				worker = new Workers::InputWorker(-1, new std::vector<std::string>({ workerArgs }));
+				worker = new Workers::InputWorker(-1, { workerArgs });
 			}
 			else if (workerName == "writefile") {
-				worker = new Workers::OutputWorker(-1, new std::vector<std::string>({ workerArgs }));
+				worker = new Workers::OutputWorker(-1, { workerArgs });
 			}
 			else {
 				throw UnknownWorkerNameException + ": '" + workerName + "'";
@@ -42,7 +42,7 @@ namespace Building {
 		}
 
 		if (inputMetadata.SpecifiedInput != "") {
-			worker = new Workers::InputWorker(-1, new std::vector<std::string>({ inputMetadata.SpecifiedInput }));
+			worker = new Workers::InputWorker(-1, { inputMetadata.SpecifiedInput });
 			result.push_back(worker);
 		}
 
@@ -70,7 +70,7 @@ namespace Building {
 		}
 
 		if (inputMetadata.SpecifiedOutput != "") {
-			worker = new Workers::OutputWorker(-1, new std::vector<std::string>({ inputMetadata.SpecifiedOutput }));
+			worker = new Workers::OutputWorker(-1, { inputMetadata.SpecifiedOutput });
 			result.push_back(worker);
 		}
 
@@ -80,6 +80,10 @@ namespace Building {
 
 		if (typeid(*result[result.size() - 1]) == typeid(Workers::OutputWorker*)) {
 			throw OutputWorkerIsNotLastException;
+		}
+
+		for each (std::pair<int, Workers::BaseWorker*> workerPair in workers) {
+			delete workerPair.second;
 		}
 
 		return result;

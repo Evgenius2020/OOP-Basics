@@ -1,15 +1,15 @@
 #include "BaseWorker.h"
 
 namespace Workers {
-	BaseWorker::BaseWorker() : _args(nullptr) {}
+	BaseWorker::BaseWorker() : _args((0)) {}
 
-	BaseWorker::BaseWorker(int id, std::vector<std::string>* args) : _id(id), _args(args) { };
+	BaseWorker::BaseWorker(int id, std::vector<std::string> args) : _id(id), _args(args) { };
 
 	int BaseWorker::GetId() {
 		return _id;
 	}
 
-	std::vector<std::string>* BaseWorker::GetArgs() {
+	std::vector<std::string> BaseWorker::GetArgs() {
 		return _args;
 	}
 
@@ -22,6 +22,5 @@ namespace Workers {
 	}
 
 	BaseWorker::~BaseWorker() {
-		delete _args;
 	}
 }
