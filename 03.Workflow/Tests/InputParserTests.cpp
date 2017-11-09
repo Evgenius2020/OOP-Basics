@@ -69,7 +69,7 @@ TEST(InputParserTests, SpecifiedWorkers) {
 	ASSERT_EQ("output2.txt", inputMetadata.SpecifiedOutput);
 }
 
-void testForException(std::string rawWorkflowFile, std::string expectExcepsion) {
+void testForException(std::string rawWorkflowFile, std::string expectException) {
 	std::vector<std::string> args = { rawWorkflowFile };
 	InputMetadata inputMetadata;
 	std::string exception = NoException;
@@ -81,7 +81,7 @@ void testForException(std::string rawWorkflowFile, std::string expectExcepsion) 
 		exception = e;
 	}
 
-	ASSERT_EQ(expectExcepsion, exception);
+	ASSERT_EQ(expectException, exception);
 }
 
 TEST(InputParserTests, PasringWorkflowFile) {
@@ -200,13 +200,6 @@ TEST(InputParserTests, NoAssingingSymbolException) {
 
 TEST(InputParserTests, UnresolvableLineException) {
 	std::string rawWorkflowFile;
-	rawWorkflowFile =
-		"desc\n"
-		"1 = worker1\n"
-		"2 = worker2 arg2_1 arg2_2\n"
-		"3 = worker3 arg3_1\n"
-		"csed\n"; // empty line after 'csed'
-	testForException(rawWorkflowFile, UnresolvableLineException + ": ");
 	rawWorkflowFile =
 		"desc\n"
 		"1 worker1\n"

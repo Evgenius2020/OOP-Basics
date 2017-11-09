@@ -9,7 +9,7 @@ namespace Tools {
 		std::string currLine;
 
 		while (!iss.eof()) {
-			iss >> currLine;
+			std::getline(iss, currLine);
 			if (iss.fail()) {
 				break; // Not useless (try to run the tests without it)
 			}

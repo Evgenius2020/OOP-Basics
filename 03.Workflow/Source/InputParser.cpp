@@ -1,12 +1,11 @@
 #include <sstream>
 #include "InputParser.h"
 #include "BuildingExceptions.h"
+#include "StringHelper.h"
 
 namespace Building {
 	InputMetadata InputParser::Parse(std::vector<std::string> args) {
 		InputMetadata result;
-		std::string input = "";
-		std::string output = "";
 		if (args.size() >= 3) {
 			if (args[1] == "-i") {
 				result.SpecifiedInput = args[2];
@@ -23,17 +22,13 @@ namespace Building {
 				}
 			}
 		}
-		
-		if (args[0] == "") {
-			return result;
-		}
+
+		std::vector<std::string> inputFileLines = Tools::StringHelper::ParseTextToLines(args[0]);
 		std::string currLine;
-		std::istringstream iss(args[0]);
 		bool haveBeginLabel = false;
 		bool haveEndLabel = false;
 
-		while (!iss.eof()) {
-			std::getline(iss, currLine);
+		for each (std::string currLine in inputFileLines) {
 			if (currLine == "desc") {
 				if (haveBeginLabel) {
 					throw DuplicatedBeginLabelException;
@@ -99,10 +94,11 @@ namespace Building {
 				throw UnresolvableLineException + ": " + currLine;
 			}
 		}
+
 		if (haveBeginLabel && !haveEndLabel) {
 			throw BeginWithoutEndException;
 		}
-		
+
 		return result;
 	}
 }
