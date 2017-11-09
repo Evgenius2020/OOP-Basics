@@ -54,4 +54,10 @@ namespace Tools {
 			throw "Exception opening/reading/closing file";
 		}
 	}
+
+	std::string StringHelper::GetEndl() {
+		std::ostringstream oss;
+		oss << std::endl;
+		return oss.str();
+	}
 }

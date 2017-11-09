@@ -110,5 +110,8 @@
     <ClCompile Include="Source\StringHelper.cpp">
       <Filter>Source Files\Tools</Filter>
     </ClCompile>
+    <ClCompile Include="Tests\StringHelperTests.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
