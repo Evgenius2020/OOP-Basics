@@ -72,6 +72,9 @@
     <ClInclude Include="Source\StringHelper.h">
       <Filter>Header Files\Tools</Filter>
     </ClInclude>
+    <ClInclude Include="Source\SortWorker.h">
+      <Filter>Header Files\Workers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\program.cpp">
@@ -112,6 +115,9 @@
     </ClCompile>
     <ClCompile Include="Tests\StringHelperTests.cpp">
       <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SortWorker.cpp">
+      <Filter>Source Files\Workers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

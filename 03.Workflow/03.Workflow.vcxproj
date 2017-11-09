@@ -151,6 +151,7 @@
     <ClInclude Include="Source\InputWorker.h" />
     <ClInclude Include="Source\OutputWorker.h" />
     <ClInclude Include="Source\BaseWorker.h" />
+    <ClInclude Include="Source\SortWorker.h" />
     <ClInclude Include="Source\StringHelper.h" />
     <ClInclude Include="Source\WorkflowBuilder.h" />
     <ClInclude Include="Source\InputMetadata.h" />
@@ -161,6 +162,7 @@
     <ClCompile Include="Source\InputParser.cpp" />
     <ClCompile Include="Source\InputWorker.cpp" />
     <ClCompile Include="Source\OutputWorker.cpp" />
+    <ClCompile Include="Source\SortWorker.cpp" />
     <ClCompile Include="Source\StringHelper.cpp" />
     <ClCompile Include="Source\WorkflowBuilder.cpp" />
     <ClCompile Include="Source\program.cpp" />
