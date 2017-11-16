@@ -75,6 +75,9 @@
     <ClInclude Include="Source\SortWorker.h">
       <Filter>Header Files\Workers</Filter>
     </ClInclude>
+    <ClInclude Include="Source\ReplaceWorker.h">
+      <Filter>Header Files\Workers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\program.cpp">
@@ -118,6 +121,9 @@
     </ClCompile>
     <ClCompile Include="Source\SortWorker.cpp">
       <Filter>Source Files\Workers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ReplaceWorker.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
