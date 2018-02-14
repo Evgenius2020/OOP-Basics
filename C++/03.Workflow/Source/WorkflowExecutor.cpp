@@ -6,7 +6,12 @@ namespace Execution {
 		std::vector<std::string> currentInput;
 		for (unsigned int i = 0; i < workers.size(); ++i) {
 			currentWorker = workers[i];
-			currentInput = currentWorker->Execute(currentInput);
+			try {
+				currentInput = currentWorker->Execute(currentInput);
+			}
+			catch (std::string e) {
+				throw e;
+			}
 		}
 	}
 }

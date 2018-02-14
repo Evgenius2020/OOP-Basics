@@ -12,5 +12,7 @@ namespace Tools {
 		static void PrintTextToFile(std::string path, std::string text);
 
 		static std::string GetEndl();
+
+		static std::string IntToStr(int value);
 	};
 }

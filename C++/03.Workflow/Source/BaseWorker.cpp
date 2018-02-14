@@ -17,8 +17,8 @@ namespace Workers {
 		return 1;
 	}
 
-	std::vector<std::string> BaseWorker::Execute(std::vector<std::string> input) {
-		return input;
+	std::vector<std::string> BaseWorker::Execute(std::vector<std::string> lines) {
+		return lines;
 	}
 
 	BaseWorker::~BaseWorker() {

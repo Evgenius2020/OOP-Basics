@@ -1,9 +1,10 @@
-#include <iostream>
 #include <string>
-#include "WorkflowExecutor.h"
-#include "WorkflowBuilder.h"
+#include "StringHelper.h"
 #include "InputMetadata.h"
 #include "InputParser.h"
+#include "WorkflowBuilder.h"
+#include "WorkflowExecutor.h"
+
 #include "gtest.cpp"
 
 int main(int argc, char* argv[]) {
@@ -13,16 +14,13 @@ int main(int argc, char* argv[]) {
 	return 0;
 #else
 	std::vector<std::string> args(0);
-	for (int i = 1; i < argc; i++) {
-		args.push_back(argv[1]);
+	for (int i = 2; i < argc; i++) {
+		args.push_back(argv[i]);
 	}
 
 	try {
-		std::fstream fs;
-		fs.open(args[0], std::fstream::in);
-		std::string rawWorkflow((std::istreambuf_iterator<char>()), std::istreambuf_iterator<char>());
-		args[0] = rawWorkflow;
-		Building::InputMetadata inputMetadata = Building::InputParser::Parse(args);
+		std::string rawWorkflowText = Tools::StringHelper::GetTextFromFile(argv[1]);
+		Building::InputMetadata inputMetadata = Building::InputParser::Parse(rawWorkflowText, args);
 		std::vector<Workers::BaseWorker*> workflow = Building::WorkflowBuilder::Build(inputMetadata);
 		Execution::WorkflowExecutor::Execute(workflow);
 	}

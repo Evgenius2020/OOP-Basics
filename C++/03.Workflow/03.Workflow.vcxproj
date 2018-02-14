@@ -145,11 +145,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Source\BuildingExceptions.h" />
+    <ClInclude Include="Source\Exceptions.h" />
+    <ClInclude Include="Source\DumpWorker.h" />
     <ClInclude Include="Source\GrepWorker.h" />
     <ClInclude Include="Source\InputParser.h" />
-    <ClInclude Include="Source\InputWorker.h" />
-    <ClInclude Include="Source\OutputWorker.h" />
+    <ClInclude Include="Source\ReadfileWorker.h" />
+    <ClInclude Include="Source\WritefileWorker.h" />
     <ClInclude Include="Source\BaseWorker.h" />
     <ClInclude Include="Source\ReplaceWorker.h" />
     <ClInclude Include="Source\SortWorker.h" />
@@ -159,10 +160,11 @@
     <ClInclude Include="Source\WorkflowExecutor.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\DumpWorker.cpp" />
     <ClCompile Include="Source\GrepWorker.cpp" />
     <ClCompile Include="Source\InputParser.cpp" />
-    <ClCompile Include="Source\InputWorker.cpp" />
-    <ClCompile Include="Source\OutputWorker.cpp" />
+    <ClCompile Include="Source\ReadfileWorker.cpp" />
+    <ClCompile Include="Source\WritefileWorker.cpp" />
     <ClCompile Include="Source\ReplaceWorker.cpp" />
     <ClCompile Include="Source\SortWorker.cpp" />
     <ClCompile Include="Source\StringHelper.cpp" />
@@ -174,6 +176,7 @@
     <ClCompile Include="Tests\StringHelperTests.cpp" />
     <ClCompile Include="Tests\WorkersTests.cpp" />
     <ClCompile Include="Tests\WorkflowBuilderTests.cpp" />
+    <ClCompile Include="Tests\WorkflowExecutorTests.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

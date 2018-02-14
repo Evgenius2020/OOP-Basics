@@ -8,8 +8,8 @@ namespace Workers {
 		return 0;
 	}
 
-	std::vector<std::string> SortWorker::Execute(std::vector<std::string> input) {
-		std::vector<std::string> result = input;
+	std::vector<std::string> SortWorker::Execute(std::vector<std::string> lines) {
+		std::vector<std::string> result = lines;
 		std::sort(result.begin(), result.end());
 
 		return result;

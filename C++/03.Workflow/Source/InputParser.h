@@ -6,6 +6,6 @@
 namespace Building {
 	class InputParser {
 	public:
-		static InputMetadata Parse(std::vector<std::string> args);
+		static InputMetadata Parse(std::string rawWorkflowText, std::vector<std::string> args);
 	};
 }

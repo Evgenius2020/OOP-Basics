@@ -42,12 +42,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\InputWorker.h">
-      <Filter>Header Files\Workers</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\OutputWorker.h">
-      <Filter>Header Files\Workers</Filter>
-    </ClInclude>
     <ClInclude Include="Source\BaseWorker.h">
       <Filter>Header Files\Workers</Filter>
     </ClInclude>
@@ -63,9 +57,6 @@
     <ClInclude Include="Source\InputParser.h">
       <Filter>Header Files\Building</Filter>
     </ClInclude>
-    <ClInclude Include="Source\BuildingExceptions.h">
-      <Filter>Header Files\Building</Filter>
-    </ClInclude>
     <ClInclude Include="Source\GrepWorker.h">
       <Filter>Header Files\Workers</Filter>
     </ClInclude>
@@ -78,6 +69,18 @@
     <ClInclude Include="Source\ReplaceWorker.h">
       <Filter>Header Files\Workers</Filter>
     </ClInclude>
+    <ClInclude Include="Source\ReadfileWorker.h">
+      <Filter>Header Files\Workers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\WritefileWorker.h">
+      <Filter>Header Files\Workers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DumpWorker.h">
+      <Filter>Header Files\Workers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Exceptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\program.cpp">
@@ -85,12 +88,6 @@
     </ClCompile>
     <ClCompile Include="Source\WorkflowExecutor.cpp">
       <Filter>Source Files\Execution</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\InputWorker.cpp">
-      <Filter>Source Files\Workers</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\OutputWorker.cpp">
-      <Filter>Source Files\Workers</Filter>
     </ClCompile>
     <ClCompile Include="Source\BaseWorker.cpp">
       <Filter>Source Files\Workers</Filter>
@@ -122,8 +119,20 @@
     <ClCompile Include="Source\SortWorker.cpp">
       <Filter>Source Files\Workers</Filter>
     </ClCompile>
+    <ClCompile Include="Source\ReadfileWorker.cpp">
+      <Filter>Source Files\Workers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\WritefileWorker.cpp">
+      <Filter>Source Files\Workers</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DumpWorker.cpp">
+      <Filter>Source Files\Workers</Filter>
+    </ClCompile>
     <ClCompile Include="Source\ReplaceWorker.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Workers</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\WorkflowExecutorTests.cpp">
+      <Filter>Tests</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

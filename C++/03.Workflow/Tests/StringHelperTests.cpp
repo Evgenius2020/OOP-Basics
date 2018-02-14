@@ -21,3 +21,8 @@ TEST(StringHelperTests, GenerateTextFromLines) {
 	std::string expectedOutput = "absccc" + endl + "efefefekey" + endl + "a" + endl + "asassdkke" + endl + "yefe" + endl + "key";
 	ASSERT_EQ(expectedOutput, StringHelper::GenerateTextFromLines(input));
 }
+
+TEST(StringHelperTests, IntToStr) {
+	ASSERT_EQ("5", StringHelper::IntToStr(5));
+	ASSERT_EQ("-5", StringHelper::IntToStr(-5));
+}

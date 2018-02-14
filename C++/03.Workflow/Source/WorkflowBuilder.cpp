@@ -1,89 +1,86 @@
 #include <map>
-#include <sstream>
 #include "WorkflowBuilder.h"
-#include "InputWorker.h"
-#include "OutputWorker.h"
-#include "BuildingExceptions.h"
 
-std::string intToStr(int value) {
-	std::ostringstream oss;
-	oss << value;
-	return oss.str();
-}
+#include "StringHelper.h"
+#include "Exceptions.h"
+
+#include "DumpWorker.h"
+#include "GrepWorker.h"
+#include "ReadfileWorker.h"
+#include "ReplaceWorker.h"
+#include "SortWorker.h"
+#include "WritefileWorker.h"
+
 
 namespace Building {
 	std::vector<Workers::BaseWorker*> WorkflowBuilder::Build(InputMetadata inputMetadata) {
 		std::vector<Workers::BaseWorker*> result(0);
-		std::map<int, Workers::BaseWorker*> workers;
 		Workers::BaseWorker* worker;
-		for (std::pair<int, std::vector<std::string>> nonParsedWorker : inputMetadata.NonParsedWorkersMap) {
-			int workerId = nonParsedWorker.first;
-			std::string workerName = nonParsedWorker.second[0];
-			std::vector<std::string> workerArgs;
-			for (int i = 1; i < nonParsedWorker.second.size(); ++i) {
-				workerArgs[i - 1] = nonParsedWorker.second[i];
-			}
 
-			if (workerName == "readfile") {
-				worker = new Workers::InputWorker(-1, { workerArgs });
+		if (inputMetadata.SpecifiedInput != "") {
+			worker = new Workers::ReadfileWorker(-1, { inputMetadata.SpecifiedInput });
+			result.push_back(worker);
+		}
+
+		for each(int workerId in inputMetadata.WorkflowSequence) {
+			if (inputMetadata.NonParsedWorkersMap.find(workerId) == inputMetadata.NonParsedWorkersMap.end()) {
+				throw UnknownWorkerIdException + ": Worker#" + Tools::StringHelper::IntToStr(workerId);
+			}
+			std::vector<std::string> workerInfo = inputMetadata.NonParsedWorkersMap[workerId];
+			std::string workerName = workerInfo[0];
+			std::vector<std::string> workerArgs(workerInfo.begin() + 1, workerInfo.end());
+
+			if (workerName == "dump") {
+				worker = new Workers::DumpWorker(workerId, workerArgs);
+			}
+			else if (workerName == "grep") {
+				worker = new Workers::GrepWorker(workerId, workerArgs);
+			}
+			else if (workerName == "readfile") {
+				worker = new Workers::ReadfileWorker(workerId, workerArgs);
+			}
+			else if (workerName == "replace") {
+				worker = new Workers::ReplaceWorker(workerId, workerArgs);
+			}
+			else if (workerName == "sort") {
+				worker = new Workers::SortWorker(workerId, workerArgs);
 			}
 			else if (workerName == "writefile") {
-				worker = new Workers::OutputWorker(-1, { workerArgs });
+				worker = new Workers::WritefileWorker(workerId, workerArgs);
 			}
 			else {
 				throw UnknownWorkerNameException + ": '" + workerName + "'";
 			}
 
 			if (worker->GetValidArgsNumber() != workerArgs.size()) {
-				throw WrongNumberOfArgs + " (Worker#" + intToStr(workerId) + ")";
+				throw WrongNumberOfArgsException + ": Worker#" + Tools::StringHelper::IntToStr(workerId);
 			}
-
-			workers[workerId] = worker;
-		}
-
-		if (inputMetadata.SpecifiedInput != "") {
-			worker = new Workers::InputWorker(-1, { inputMetadata.SpecifiedInput });
 			result.push_back(worker);
-		}
-
-		for (int i = 0; i < inputMetadata.WorkflowSequence.size(); ++i) {
-			int workerId = inputMetadata.WorkflowSequence[i];
-			if (workers.find(workerId) == workers.end()) {
-				throw WrongIdInSequenceException + " (Worker#" + intToStr(workerId) + ")";
-			}
-
-			if (result.size() == 0) {
-				if (typeid(*workers[workerId]) != typeid(Workers::InputWorker)) {
-					throw WorkerWithoutInputException + " (Worker#" + intToStr(workerId) + ")";
-				}
-			}
-			else {
-				if (typeid(*workers[workerId]) == typeid(Workers::InputWorker)) {
-					throw InputWorkerIsNotFirstException;
-				}
-				if (typeid(*result[result.size() - 1]) == typeid(Workers::OutputWorker)) {
-					throw OutputWorkerIsNotLastException;
-				}
-			}
-
-			result.push_back(workers[workerId]);
 		}
 
 		if (inputMetadata.SpecifiedOutput != "") {
-			worker = new Workers::OutputWorker(-1, { inputMetadata.SpecifiedOutput });
+			worker = new Workers::WritefileWorker(-1, { inputMetadata.SpecifiedOutput });
 			result.push_back(worker);
 		}
+
 
 		if (result.size() == 0) {
 			throw EmptyWorkflowException;
 		}
-
-		if (typeid(*result[result.size() - 1]) == typeid(Workers::OutputWorker*)) {
-			throw OutputWorkerIsNotLastException;
+		if (typeid(*result[0]) != typeid(Workers::ReadfileWorker)) {
+			throw ReadfileWorkerIsNotFirstException;
 		}
+		if (typeid(*result[result.size() - 1]) != typeid(Workers::WritefileWorker)) {
+			throw WritefileWorkerIsNotLastException;
+		}
+		for (unsigned int i = 1; i < result.size() - 1; ++i) {
+			if (typeid(*result[i]) == typeid(Workers::ReadfileWorker)) {
+				throw ReadfileWorkerIsNotFirstException;
 
-		for each (std::pair<int, Workers::BaseWorker*> workerPair in workers) {
-			delete workerPair.second;
+			}
+			if (typeid(*result[i]) == typeid(Workers::WritefileWorker)) {
+				throw WritefileWorkerIsNotLastException;
+			}
 		}
 
 		return result;

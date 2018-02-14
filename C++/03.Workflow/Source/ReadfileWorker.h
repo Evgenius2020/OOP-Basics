@@ -1,11 +1,10 @@
 #pragma once
-
 #include "BaseWorker.h"
 
 namespace Workers {
-	class GrepWorker : public BaseWorker {
+	class ReadfileWorker : public BaseWorker {
 	public:
-		GrepWorker(int id, std::vector<std::string> args);
+		ReadfileWorker(int id, std::vector<std::string> args);
 
 		std::vector<std::string> Execute(std::vector<std::string> lines) override;
 	};
