@@ -1,0 +1,4 @@
+Build/
+*.suo
+.vs/
+*.VC.*

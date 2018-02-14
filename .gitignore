@@ -1,9 +1,0 @@
-#### C++
-Build/
-*.suo
-.vs/
-*.VC.*
-
-#### Java
-out/
-.idea/

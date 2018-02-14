@@ -55,7 +55,6 @@ public class CsvBuilder {
             this.frequency = frequency;
         }
 
-        @Override
         public int compareTo(WordRecord o) {
             if (frequency > o.frequency) {
                 return -1;
