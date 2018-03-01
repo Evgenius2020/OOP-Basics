@@ -2,30 +2,26 @@ import java.util.HashMap;
 import java.util.Stack;
 
 public class Calculator {
+    private HashMap<String, Object> _definitions;
     private Stack<Object> _stack;
-    private HashMap<String, Object> _defines;
     private ExecutorsFactory _factory;
 
     public Calculator(ExecutorsFactory factory) {
-        _stack = new Stack<Object>();
-        _defines = new HashMap<String, Object>();
+        _definitions = new HashMap<>();
+        _stack = new Stack<>();
         _factory = factory;
     }
 
-    public Object Pop() {
-        return _stack.pop();
+    public Stack<Object> getStack() {
+        return _stack;
     }
 
-    public void Push(Object value) {
-        _stack.push(value);
+    public HashMap<String, Object> getDefinitions() {
+        return _definitions;
     }
 
-    public String Print() {
-        return _stack.peek().toString();
-    }
-
-    public void ExecuteOperation(String operation) throws Throwable {
-        Executor executor = _factory.GetInstance(operation);
+    public void executeOperation(String operation) throws Throwable {
+        Executor executor = _factory.getInstance(operation);
         int argc = executor.GetArgsNumber();
         if (argc > _stack.size()) {
             throw new Exception(Exceptions.NotEnoughArguments);
@@ -34,11 +30,12 @@ public class Calculator {
         for (int i = 0; i < argc; i++) {
             argv[i] = _stack.pop();
         }
-        Object result = executor.execute(argv, _defines);
+        Object result = executor.execute(argv, _definitions);
         _stack.push(result);
     }
 
-    public void Define(String name, Object value) {
-        _defines.put(name, value);
+    public void drop() {
+        _definitions = new HashMap<>();
+        _stack = new Stack<>();
     }
 }
