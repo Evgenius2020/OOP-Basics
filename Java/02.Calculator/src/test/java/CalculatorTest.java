@@ -1,9 +1,7 @@
-import java.util.List;
-
-import static org.junit.Assert.*;
+import org.junit.Test;
 
 public class CalculatorTest {
-    @org.junit.Test
+    @Test
     public void testDrop() {
         Calculator calculator = new Calculator(null);
         calculator.getStack().push("aaa");

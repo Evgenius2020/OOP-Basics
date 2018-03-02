@@ -22,7 +22,7 @@ public class Calculator {
 
     public void executeOperation(String operation) throws Throwable {
         Executor executor = _factory.getInstance(operation);
-        int argc = executor.GetArgsNumber();
+        int argc = executor.getArgsNumber();
         if (argc > _stack.size()) {
             throw new Exception(Exceptions.NotEnoughArguments);
         }

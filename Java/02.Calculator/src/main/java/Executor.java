@@ -1,7 +1,6 @@
 import java.util.HashMap;
 
 public interface Executor {
-    int GetArgsNumber();
-
+    int getArgsNumber();
     Object execute(Object[] argv, HashMap<String, Object> definitions);
 }
