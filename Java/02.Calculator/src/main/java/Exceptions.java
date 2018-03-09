@@ -1,3 +1,4 @@
 public class Exceptions {
-    public static String NotEnoughArguments = "Not enough arguments in stack to execute an operation.";
+    public static class NotEnoughArgumentsException extends Exception {}
+    public static class ExecutorNotDefinedException extends Exception {}
 }

@@ -20,11 +20,14 @@ public class Calculator {
         return _definitions;
     }
 
-    public void executeOperation(String operation) throws Throwable {
+    public void executeOperation(String operation)
+            throws Exceptions.NotEnoughArgumentsException, ClassNotFoundException,
+            Exceptions.ExecutorNotDefinedException, InstantiationException,
+            IllegalAccessException {
         Executor executor = _factory.getInstance(operation);
         int argc = executor.getArgsNumber();
         if (argc > _stack.size()) {
-            throw new Exception(Exceptions.NotEnoughArguments);
+            throw new Exceptions.NotEnoughArgumentsException();
         }
         Object[] argv = new Object[argc];
         for (int i = 0; i < argc; i++) {

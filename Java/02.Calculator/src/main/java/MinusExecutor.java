@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-public class PlusExecutor extends Executor {
+public class MinusExecutor extends Executor {
     @Override
     public int getArgsNumber() {
         return 2;
@@ -11,6 +11,6 @@ public class PlusExecutor extends Executor {
         Double left = ((Number)resolveArgumentSource(argv[0], definitions)).doubleValue();
         Double right = ((Number)resolveArgumentSource(argv[1], definitions)).doubleValue();
 
-        return left + right;
+        return left - right;
     }
 }
