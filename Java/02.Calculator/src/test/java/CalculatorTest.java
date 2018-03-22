@@ -1,5 +1,4 @@
 import org.junit.Test;
-
 import java.util.HashMap;
 
 public class CalculatorTest {
@@ -50,6 +49,12 @@ public class CalculatorTest {
 
         calculator.getStack().push(4);
         testOperation(calculator, "-", 4d);
+
+        calculator.getStack().push(5);
+        testOperation(calculator, "*", 20d);
+
+        calculator.getStack().push(5);
+        testOperation(calculator, "/", 4d);
 
         testOperation(calculator, "SQRT", 2d);
         assert (calculator.getStack().size() == 1);

@@ -17,6 +17,7 @@ public class Main {
         operationExecutorMap.put("*", MultiplicationExecutor.class.getName());
         operationExecutorMap.put("/", DivisionExecutor.class.getName());
         operationExecutorMap.put("SQRT", SQRTExecutor.class.getName());
+
         Calculator calculator = new Calculator(new ExecutorsFactory(operationExecutorMap));
         String currLine;
         while (true) {
@@ -27,7 +28,8 @@ public class Main {
 
             String[] words = currLine.split(" ");
             try {
-                if (words[0].compareTo("PUSH") == 0) {
+                String cmd = words[0].toUpperCase();
+                if (cmd.compareTo("PUSH") == 0) {
                     try {
                         calculator.getStack().push(Double.parseDouble(words[1]));
                     } catch (Exception e) {
@@ -35,23 +37,23 @@ public class Main {
                     }
                     continue;
                 }
-                if (words[0].compareTo("POP") == 0) {
+                if (cmd.compareTo("POP") == 0) {
                     calculator.getStack().pop();
                     continue;
                 }
-                if (words[0].compareTo("PRINT") == 0) {
+                if (cmd.compareTo("PRINT") == 0) {
                     System.out.println(calculator.getStack().peek().toString());
                     continue;
                 }
-                if (words[0].compareTo("DEFINE") == 0) {
+                if (cmd.compareTo("DEFINE") == 0) {
                     calculator.getDefinitions().put(words[1], Double.parseDouble(words[2]));
                     continue;
                 }
-                if (words[0].compareTo("EXIT") == 0) {
+                if (cmd.compareTo("EXIT") == 0) {
                     break;
                 }
-                if (operationExecutorMap.containsKey(words[0])) {
-                    calculator.executeOperation(words[0]);
+                if (operationExecutorMap.containsKey(cmd)) {
+                    calculator.executeOperation(cmd);
                     continue;
                 }
                 throw new Exceptions.NotSupportedCommand();

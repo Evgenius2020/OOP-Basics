@@ -30,7 +30,7 @@ public class Calculator {
             throw new Exceptions.NotEnoughArgumentsException();
         }
         Object[] argv = new Object[argc];
-        for (int i = 0; i < argc; i++) {
+        for (int i = argc - 1; i >= 0; i--) {
             argv[i] = _stack.pop();
         }
         Object result = executor.execute(argv, _definitions);
