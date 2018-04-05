@@ -14,8 +14,8 @@ public class View extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        int _fieldHeight = 40;
-        int _fieldWidth = 5;
+        int _fieldHeight = 20;
+        int _fieldWidth = 10;
         Controller controller = new Controller(_fieldHeight, _fieldWidth, 8);
 
         Pane view = new Pane();
@@ -24,11 +24,11 @@ public class View extends Application {
         Rectangle _gameFieldSquares[][] = new Rectangle[_fieldHeight][_fieldWidth];
         for (int i = 0; i < _fieldHeight; i++) {
             for (int j = 0; j < _fieldWidth; j++) {
-                Rectangle square = new Rectangle(15, 15);
-                square.setArcHeight(3);
-                square.setArcWidth(3);
-                square.setX(15 * j);
-                square.setY(15 * i);
+                Rectangle square = new Rectangle(30, 30);
+                square.setArcHeight(4);
+                square.setArcWidth(14);
+                square.setX(30 * j);
+                square.setY(30 * i);
                 _gameFieldSquares[i][j] = square;
                 gameField.getChildren().add(square);
             }
@@ -39,14 +39,26 @@ public class View extends Application {
         primaryStage.getScene().setOnKeyPressed((event) -> {
             if (event.getCode() == KeyCode.DOWN) {
                 controller.down();
-                for(int i = 0; i < _fieldHeight; i++) {
-                    for(int j = 0; j < _fieldWidth; j++) {
-                        _gameFieldSquares[i][j].setFill(getColorByCode(controller.getField()[i][j]));
-                    }
-                }
+                drawField(_fieldHeight, _fieldWidth, controller, _gameFieldSquares);
+            }
+            if (event.getCode() == KeyCode.LEFT) {
+                controller.left();
+                drawField(_fieldHeight, _fieldWidth, controller, _gameFieldSquares);
+            }
+            if (event.getCode() == KeyCode.RIGHT) {
+                controller.right();
+                drawField(_fieldHeight, _fieldWidth, controller, _gameFieldSquares);
             }
         });
         primaryStage.show();
+    }
+
+    private void drawField(int _fieldHeight, int _fieldWidth, Controller controller, Rectangle[][] _gameFieldSquares) {
+        for(int i = 0; i < _fieldHeight; i++) {
+            for(int j = 0; j < _fieldWidth; j++) {
+                _gameFieldSquares[i][j].setFill(getColorByCode(controller.getField()[i][j]));
+            }
+        }
     }
 
     private Paint getColorByCode(int colorCode) {
@@ -58,7 +70,7 @@ public class View extends Application {
             case 4: return Color.YELLOW;
             case 5: return Color.ORANGE;
             case 6: return Color.INDIGO;
-            case 7: return Color.AQUA;
+            case 7: return Color.DARKGRAY;
         }
         return  Color.BLACK;
     }

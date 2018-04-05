@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class GameModel {
     private enum state {
-        blockMoving, blockPlacing, lineProcessing, gameOver
+        blockMoving, blockPlacing, rowProcessing, gameOver
     }
 
     private int[][] _field;
@@ -68,6 +68,7 @@ public class GameModel {
                 _field[i][j] = -1;
             }
         }
+        _currentBlock = null;
         _state = state.blockPlacing;
         _score = 0;
     }
@@ -109,38 +110,13 @@ public class GameModel {
                 return;
             }
             case blockMoving: {
-                boolean isTimeToStop = false;
-                for(Point blockElement: _currentBlock) {
-                    int nextRow = blockElement.y + 1;
-                    if( nextRow >= _fieldHeight) {
-                        isTimeToStop = true;
-                        break;
-                    }
-                    if (_field[nextRow][blockElement.x] != -1) {
-                        isTimeToStop = true;
-                        for (Point neighbour: _currentBlock) {
-                            if ((neighbour.x == blockElement.x)
-                                    && (neighbour.y == blockElement.y + 1)) {
-                                isTimeToStop = false;
-                            }
-                        }
-                    }
+                if (!moveDown()) {
+                    _state = state.rowProcessing;
+                    _currentBlock = null;
                 }
-                if (isTimeToStop) {
-                    _state = state.lineProcessing;
-                    return;
-                }
-
-                for(Point blockElement: _currentBlock) {
-                    _field[blockElement.y][blockElement.x] = -1;
-                }
-                for(Point blockElement: _currentBlock) {
-                    _field[++blockElement.y][blockElement.x] = _nextColorNumber;
-                }
-
                 return;
             }
-            case lineProcessing: {
+            case rowProcessing: {
                 for (int i = 0; i < _fieldHeight; i++) {
                     boolean isFullRow = true;
                     for (int j = 0; j < _fieldWidth; j++) {
@@ -176,6 +152,58 @@ public class GameModel {
             result[3][i] = -1;
         }
         return result;
+    }
+
+    public boolean moveBlock(int xShift, int yShift) {
+        if (_currentBlock == null) {
+            return false;
+        }
+        for(Point blockElement: _currentBlock) {
+            if (!pointIsFree(blockElement.x + xShift, blockElement.y + yShift)) {
+                return false;
+            }
+        }
+        for(Point blockElement: _currentBlock) {
+            _field[blockElement.y][blockElement.x] = -1;
+        }
+        for(Point blockElement: _currentBlock) {
+            blockElement.x += xShift;
+            blockElement.y += yShift;
+            _field[blockElement.y][blockElement.x] = _nextColorNumber;
+        }
+        return true;
+    }
+
+    public boolean moveLeft() {
+        return moveBlock(-1, 0);
+    }
+
+    public boolean moveRight() {
+        return moveBlock(1, 0);
+    }
+
+    public boolean moveDown() {
+        return moveBlock(0, 1);
+    }
+
+    private boolean pointIsFree(int x, int y) {
+        if ((x < 0) || (x >= _fieldWidth)) {
+            return false;
+        }
+        if ((y < 0) || (y >= _fieldHeight)) {
+            return false;
+        }
+
+        if (_field[y][x] != -1) {
+            for (Point neighbour : _currentBlock) {
+                if ((neighbour.x == x) && (neighbour.y == y)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        return true;
     }
 
     public int[][] getField() {

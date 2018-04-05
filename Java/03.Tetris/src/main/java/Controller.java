@@ -5,15 +5,19 @@ public class Controller {
         _gameModel = new GameModel(fieldHeight, fieldWidth, usedColors);
     }
 
-    public void down() {
-        _gameModel.step();
-    }
-
     public int[][] getField() {
         return _gameModel.getField();
     }
 
-    public  GameModel getModel() {
-        return _gameModel;
+    public void down() {
+        _gameModel.step();
+    }
+
+    public void left() {
+        _gameModel.moveLeft();
+    }
+
+    public void right() {
+        _gameModel.moveRight();
     }
 }
