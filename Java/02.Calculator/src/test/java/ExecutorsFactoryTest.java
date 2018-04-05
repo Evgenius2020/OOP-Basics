@@ -1,3 +1,4 @@
+import Executors.PlusExecutor;
 import org.junit.Test;
 import java.util.HashMap;
 
@@ -7,7 +8,7 @@ public class ExecutorsFactoryTest {
         boolean thrown;
         Object instance;
         HashMap<String, String> operationExecutorMap = new HashMap<>();
-        operationExecutorMap.put("+", "PlusExecutor");
+        operationExecutorMap.put("+", "Executors.PlusExecutor");
 
         PlusExecutor plusExecutor = null;
         thrown = false;

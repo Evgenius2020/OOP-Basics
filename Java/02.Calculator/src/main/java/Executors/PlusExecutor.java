@@ -1,3 +1,5 @@
+package Executors;
+
 import java.util.HashMap;
 
 public class PlusExecutor extends Executor {
