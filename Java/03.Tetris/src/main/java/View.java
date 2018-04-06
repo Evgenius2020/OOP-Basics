@@ -49,6 +49,10 @@ public class View extends Application {
                 controller.right();
                 drawField(_fieldHeight, _fieldWidth, controller, _gameFieldSquares);
             }
+            if (event.getCode() == KeyCode.UP) {
+                controller.rotate();
+                drawField(_fieldHeight, _fieldWidth, controller, _gameFieldSquares);
+            }
         });
         primaryStage.show();
     }

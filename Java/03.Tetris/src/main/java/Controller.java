@@ -20,4 +20,8 @@ public class Controller {
     public void right() {
         _gameModel.moveRight();
     }
+
+    public void rotate() {
+        _gameModel.rotate();
+    }
 }
