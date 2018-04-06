@@ -1,3 +1,4 @@
+import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
@@ -6,6 +7,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class View extends Application {
     public static void main(String[] args) {
@@ -35,12 +37,19 @@ public class View extends Application {
         }
         view.getChildren().add(gameField);
 
-        primaryStage.setScene(new Scene(view, 500, 500));
+        primaryStage.setScene(new Scene(view, 500, 700));
+
+        PauseTransition nextStateTick = new PauseTransition();
+        nextStateTick.setDuration(new Duration(100));
+        nextStateTick.setOnFinished(event -> {
+            controller.down();
+            drawField(_fieldHeight, _fieldWidth, controller, _gameFieldSquares);
+            nextStateTick.setDuration(new Duration(100));
+            nextStateTick.play();
+        });
+        nextStateTick.play();
+
         primaryStage.getScene().setOnKeyPressed((event) -> {
-            if (event.getCode() == KeyCode.DOWN) {
-                controller.down();
-                drawField(_fieldHeight, _fieldWidth, controller, _gameFieldSquares);
-            }
             if (event.getCode() == KeyCode.LEFT) {
                 controller.left();
                 drawField(_fieldHeight, _fieldWidth, controller, _gameFieldSquares);
@@ -74,7 +83,7 @@ public class View extends Application {
             case 4: return Color.YELLOW;
             case 5: return Color.ORANGE;
             case 6: return Color.INDIGO;
-            case 7: return Color.DARKGRAY;
+            case 7: return Color.DARKCYAN;
         }
         return  Color.BLACK;
     }
