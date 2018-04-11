@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class GameModel {
-
     private enum state {
         blockMoving, blockPlacing, rowProcessing, gameOver
     }
@@ -13,6 +12,7 @@ public class GameModel {
     private ArrayList<Point> _currentBlock;
     private int _currentBlockNumber;
     private int _currentColorNumber;
+    private int _nextBlockNumber;
     private int _currentBlockStartX;
     private int _currentBlockStartY;
     private int _fieldWidth;
@@ -113,6 +113,8 @@ public class GameModel {
                 _field[i][j] = -1;
             }
         }
+        Random rnd = new Random(System.currentTimeMillis());
+        _nextBlockNumber = rnd.nextInt(_blockTemplates.size());
         _currentBlock = null;
         _state = state.blockPlacing;
         _score = 0;
@@ -120,7 +122,8 @@ public class GameModel {
 
     private void generateNextBlock() {
         Random rnd = new Random(System.currentTimeMillis());
-        _currentBlockNumber = rnd.nextInt(_blockTemplates.size());
+        _currentBlockNumber = _nextBlockNumber;
+        _nextBlockNumber = rnd.nextInt(_blockTemplates.size());
         _currentColorNumber = rnd.nextInt(_usedColors);
         _currentBlockStartX = (_fieldWidth - 4) / 2;
         _currentBlockStartY = 0;
@@ -135,7 +138,7 @@ public class GameModel {
             }
             case blockPlacing: {
                 generateNextBlock();
-                if (placeForBlockIsAvailable(_currentBlock)) {
+                if (placeForBlockIsAvailable(_currentBlock, false)) {
                     placeCurrentBlock();
                     _state = state.blockMoving;
                 }
@@ -182,7 +185,7 @@ public class GameModel {
         int rotatedBlockNumber = (_currentBlockNumber / 4) * 4 + (_currentBlockNumber + 1) % 4;
         boolean[][] rotatedTemplate = _blockTemplates.get(rotatedBlockNumber);
         ArrayList<Point> nextState = generateBlockByTemplate(rotatedTemplate, _currentBlockStartX, _currentBlockStartY);
-        if (!placeForBlockIsAvailable(nextState)) {
+        if (!placeForBlockIsAvailable(nextState, true)) {
             return false;
         }
         deleteCurrentBlock();
@@ -201,7 +204,7 @@ public class GameModel {
         int templateStartX = _currentBlockStartX + xShift;
         int templateStartY = _currentBlockStartY + yShift;
         ArrayList<Point> nextState = generateBlockByTemplate(template, templateStartX, templateStartY);
-        if (!placeForBlockIsAvailable(nextState)) {
+        if (!placeForBlockIsAvailable(nextState,true)) {
             return false;
         }
         deleteCurrentBlock();
@@ -239,7 +242,7 @@ public class GameModel {
         return block;
     }
 
-    private boolean placeForBlockIsAvailable(ArrayList<Point> block) {
+    private boolean placeForBlockIsAvailable(ArrayList<Point> block, boolean isBlockMovingMode) {
         for(Point blockElement: block){
             int x = blockElement.x;
             int y = blockElement.y;
@@ -252,6 +255,9 @@ public class GameModel {
             }
 
             if (_field[y][x] != -1) {
+                if (!isBlockMovingMode) {
+                    return false;
+                }
                 boolean isElementOfBlock = false;
                 for (Point neighbour : _currentBlock) {
                     if ((neighbour.x == x) && (neighbour.y == y)) {
@@ -280,6 +286,10 @@ public class GameModel {
 
     public int[][] getField() {
         return _field;
+    }
+
+    public boolean[][] getNextPart() {
+        return _blockTemplates.get(_nextBlockNumber);
     }
 
     public int getScore() {

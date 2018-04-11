@@ -24,4 +24,12 @@ public class Controller {
     public void rotate() {
         _gameModel.rotate();
     }
+
+    public int getScore() {
+        return _gameModel.getScore();
+    }
+
+    public boolean[][] getNextPart() {
+        return _gameModel.getNextPart();
+    }
 }
