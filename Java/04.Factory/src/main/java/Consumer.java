@@ -7,7 +7,8 @@ class Consumer implements Runnable{
 
     public void run(){
         for (int i = 1; i < 6; i++) {
-            _store.get();
+            Product product = _store.popProduct();
+            System.out.println("Consumer: received a product with id#" + product.getId());
         }
     }
 }

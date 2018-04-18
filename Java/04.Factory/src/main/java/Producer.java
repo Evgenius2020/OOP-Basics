@@ -7,7 +7,8 @@ class Producer implements Runnable {
 
     public void run() {
         for (int i = 1; i < 6; i++) {
-            _store.put();
+            _store.pushProduct(new Product(i));
+            System.out.println("Producer: created a product with id#" + i);
         }
     }
 }
