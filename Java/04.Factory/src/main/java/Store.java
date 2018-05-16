@@ -2,9 +2,17 @@ import java.util.LinkedList;
 
 class Store {
     private LinkedList<Product> _products;
+    private int _maximum;
+    private int _nextId;
 
-    public Store() {
+    public Store(int maximum) {
+        _maximum = maximum;
+        _nextId = 0;
         _products = new LinkedList<Product>();
+    }
+
+    public synchronized int getNextId() {
+        return _nextId++;
     }
 
     public synchronized Product popProduct() {
@@ -22,7 +30,7 @@ class Store {
     }
 
     public synchronized void pushProduct(Product product) {
-        while (_products.size() >= 3) {
+        while (_products.size() >= _maximum) {
             try {
                 wait();
             } catch (InterruptedException e) {

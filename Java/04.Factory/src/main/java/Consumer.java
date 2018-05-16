@@ -1,5 +1,5 @@
 class Consumer implements Runnable{
-    Store _store;
+    private Store _store;
 
     Consumer(Store store){
         _store = store;
