@@ -1,3 +1,4 @@
+import Controller.Controller;
 import View.View;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -11,6 +12,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setScene(new Scene(new View()));
+        Controller controller = new Controller();
+        controller.initialize();
         primaryStage.show();
     }
 }

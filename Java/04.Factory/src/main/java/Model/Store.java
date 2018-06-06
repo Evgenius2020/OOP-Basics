@@ -2,7 +2,7 @@ package Model;
 
 import java.util.LinkedList;
 
-class Store {
+public class Store {
     private LinkedList<Product> _products;
     private int _maximum;
     private int _nextId;

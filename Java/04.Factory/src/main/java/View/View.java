@@ -1,6 +1,5 @@
 package View;
 
-import Model.Product;
 import Model.ProductType;
 import javafx.scene.layout.HBox;
 

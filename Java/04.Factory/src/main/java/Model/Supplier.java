@@ -1,11 +1,11 @@
 package Model;
 
-class Supplier implements Runnable {
+public class Supplier implements Runnable {
     private Store _store;
     private int _timeForProduct;
     private ProductType _productType;
 
-    Supplier(Store store, int productionTime, ProductType productType) {
+    public Supplier(Store store, int productionTime, ProductType productType) {
         _store = store;
         _timeForProduct = productionTime;
         _productType = productType;
