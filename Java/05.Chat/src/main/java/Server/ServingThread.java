@@ -4,17 +4,19 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Arrays;
 import java.util.LinkedList;
 
 public class ServingThread implements Runnable {
     private Socket _socket;
     private LinkedList<Message> _messageList;
 
-    ServingThread(Socket socket, LinkedList<Message> messageList) {
-        this._socket = socket;
-        this._messageList = messageList;
+    public ServingThread(Socket socket, LinkedList<Message> messageList) {
+        _socket = socket;
+        _messageList = messageList;
     }
 
+    @Override
     public void run() {
         try {
             BufferedReader in = new BufferedReader(new InputStreamReader(_socket.getInputStream()));
@@ -25,33 +27,18 @@ public class ServingThread implements Runnable {
             out.println("Hi, " + userName);
             addMessage(new Message("Server", userName + " is connected."));
 
-            String messageText;
-            int messagesFromIndex = 0;
-            do {
-                addMessagesToClient(messagesFromIndex, userName, out);
-                messagesFromIndex = _messageList.size();
-                messageText = in.readLine();
-                if (messageText.equals("")) {
-                    continue;
-                }
-                Message message = new Message(userName, messageText);
-                addMessage(message);
-            } while (!messageText.equals("bye"));
+            Thread sendingThread = new Thread(new SendingThread(_messageList, userName, out));
+            sendingThread.start();
+            new Thread(new ReceivingThread(_messageList, userName, in)).run();
+            sendingThread.interrupt();
 
             addMessage(new Message("Server", userName + " is disconnected."));
         }
         catch (Exception e) {
-            System.err.println("Connection refused");
+            System.err.println(Arrays.toString(e.getStackTrace()));
         }
-    }
-
-    private synchronized void addMessagesToClient(int fromIndex, String username, PrintWriter out) {
-        for(int i = fromIndex; i < _messageList.size(); i++) {
-            Message message = _messageList.get(i);
-            if (message.username.equals(username)) {
-                continue;
-            }
-            out.println(message);
+        finally {
+            System.err.println("Connection refused.");
         }
     }
 

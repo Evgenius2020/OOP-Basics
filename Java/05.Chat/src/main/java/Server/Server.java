@@ -1,6 +1,7 @@
 package Server;
 
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.Arrays;
 import java.util.LinkedList;
 
@@ -11,8 +12,8 @@ public class Server {
             LinkedList<Message> messageList = new LinkedList<>();
             System.out.println("Started listening at " + serverSocket.getLocalSocketAddress());
             while (true) {
-                new Thread(new ServingThread(serverSocket.accept(), messageList)).start();
-                System.out.println("New client is connected.");
+                Socket socket = serverSocket.accept();
+                new Thread(new ServingThread(socket, messageList)).start();
             }
         }
         catch (Exception e) {
