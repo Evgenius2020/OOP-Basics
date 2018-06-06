@@ -1,3 +1,5 @@
+package Model;
+
 public class ThreadsApp {
     public static void main(String[] args) {
         Store engineStore = new Store(3);

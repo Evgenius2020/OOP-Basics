@@ -1,3 +1,5 @@
+package Model;
+
 class Supplier implements Runnable {
     private Store _store;
     private int _timeForProduct;
@@ -18,7 +20,7 @@ class Supplier implements Runnable {
             catch (Exception e) {
             }
             _store.pushProduct(new Product(productId, _productType));
-            System.out.println("Supplier: created a " + _productType.toString() + " with id#" + productId);
+            System.out.println("Model.Supplier: created a " + _productType.toString() + " with id#" + productId);
         }
     }
 }

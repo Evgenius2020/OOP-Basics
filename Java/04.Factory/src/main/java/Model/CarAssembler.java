@@ -1,3 +1,5 @@
+package Model;
+
 public class CarAssembler implements Runnable {
     private Store _bodyStore;
     private Store _engineStore;
